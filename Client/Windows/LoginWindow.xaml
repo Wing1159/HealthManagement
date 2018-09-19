@@ -1,0 +1,64 @@
+﻿<DMSkin:DMSkinSimpleWindow x:Class="Client.Windows.LoginWindow"
+        xmlns:DMSkin="clr-namespace:DMSkin.WPF;assembly=DMSkin.WPF"
+        xmlns:controls="clr-namespace:DMSkin.WPF.Controls;assembly=DMSkin.WPF"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Windows"
+        xmlns:viewmodels="clr-namespace:Client.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        FontSize="20" WindowStyle="None" ResizeMode="NoResize"
+        Title="登录" Height="540" Width="880" MinHeight="540" MinWidth="880">
+    <Window.DataContext>
+        <viewmodels:UserViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid Background="#99000000">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="159*"/>
+                    <ColumnDefinition Width="139*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <Label Margin="10,0,0,0" Content="{StaticResource AppNameZh}" FontFamily="{StaticResource AppFont}" FontSize="22" Foreground="White" Opacity="0.8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                    <Label Margin="0,0,20,0" Content="登陆"  FontSize="15" Foreground="{StaticResource AppColor}" Opacity="0.8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                    <Border Height="1" Background="{StaticResource AppColor}" VerticalAlignment="Bottom" Opacity="0.1"></Border>
+                </StackPanel>
+                <WrapPanel
+                    Height="{Binding DMSystemButtonSize}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                    Grid.Column="1">
+                    <controls:DMSystemCloseButton
+                        DMSystemButtonForeground="White"
+                        DMSystemButtonHoverForeground="White"/>
+                </WrapPanel>
+            </Grid>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+                <!--头像-->
+                <Ellipse Width="105" Height="105" Margin="0,0,0,30">
+                    <Ellipse.Effect>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="20"/>
+                    </Ellipse.Effect>
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Resources/bg2.jpg" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBox Name="tbUserName"  Margin="0,10,0,0" 
+                         Style="{StaticResource LoginInput}"  
+                         Background="{Binding ElementName=tbUserName,Path=Text,ConverterParameter=name}"
+                         Foreground="White" CaretBrush="White">
+                </TextBox>
+                <Border Background="White" Height="1"></Border>
+                <PasswordBox Margin="0,10,0,0" Style="{StaticResource LoginPassWordInput}"  
+                             Grid.Column="1" Foreground="White" CaretBrush="White">
+                </PasswordBox>
+                <Border Background="White" Height="1"></Border>
+                <Button Style="{StaticResource ButtonStyle1}" Content="登录" Margin="0,30,0,0" Height="50" Name="BtnLogin" Click="BtnLogin_Click"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</DMSkin:DMSkinSimpleWindow>
