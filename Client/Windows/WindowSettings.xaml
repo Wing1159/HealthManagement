@@ -65,7 +65,7 @@
                 </DockPanel>
             </controls:DMTabItem>
             <controls:DMTabItem Height="35"
-                                Header="其他设置"
+                                Header="关于"
                                 SelectForeground="White"
                                 SelectedColor="#FF1E9FFF"
                                 TabItemType="Right">

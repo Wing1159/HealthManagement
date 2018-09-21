@@ -15,6 +15,20 @@
         <viewmodels:UserViewModel/>
     </Window.DataContext>
     <Grid>
+        <MediaElement Name="myMediaElement" Stretch="Fill" Volume="0">
+            <MediaElement.Triggers>
+                <EventTrigger RoutedEvent="MediaElement.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <MediaTimeline Source="pack://siteoforigin:,,,/Resources/bg.mp4" Storyboard.TargetName="myMediaElement"    
+        RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </MediaElement.Triggers>
+        </MediaElement>
         <Grid Background="#99000000">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -47,15 +61,23 @@
                         <ImageBrush ImageSource="/Resources/bg2.jpg" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBox Name="tbUserName"  Margin="0,10,0,0" 
-                         Style="{StaticResource LoginInput}"  
-                         Background="{Binding ElementName=tbUserName,Path=Text,ConverterParameter=name}"
-                         Foreground="White" CaretBrush="White">
-                </TextBox>
+                <WrapPanel>
+                    <TextBox Name="tbUserName"  Margin="0,10,0,0"
+                         Width="260"
+                         Style="{StaticResource LoginInput}"
+                         Foreground="White" CaretBrush="White"
+                             Text="{Binding txt_user}">
+                         
+                    </TextBox>
+                    <Label Style="{StaticResource FLable}" FontSize="28" Content="&#xe617;" VerticalContentAlignment="Center"/>
+                </WrapPanel>
                 <Border Background="White" Height="1"></Border>
-                <PasswordBox Margin="0,10,0,0" Style="{StaticResource LoginPassWordInput}"  
-                             Grid.Column="1" Foreground="White" CaretBrush="White">
-                </PasswordBox>
+                <WrapPanel>
+                    <PasswordBox Margin="0,10,0,0" Style="{StaticResource LoginPassWordInput}"  
+                             Grid.Column="1" Foreground="White" CaretBrush="White" Width="260">
+                    </PasswordBox>
+                    <Label Style="{StaticResource FLable}" FontSize="28" Content="&#xe67d;" VerticalContentAlignment="Center"/>
+                </WrapPanel>
                 <Border Background="White" Height="1"></Border>
                 <Button Style="{StaticResource ButtonStyle1}" Content="登录" Margin="0,30,0,0" Height="50" Name="BtnLogin" Click="BtnLogin_Click"></Button>
             </StackPanel>

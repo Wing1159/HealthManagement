@@ -22,7 +22,10 @@ namespace Client
             ShutdownMode = ShutdownMode.OnLastWindowClose;
 
             //启动窗口
-            Windows.LoginWindow main = new Windows.LoginWindow();
+            //Windows.RegisterWindow main = new Windows.RegisterWindow();
+            //main.Show();
+            //Windows.LoginWindow main = new Windows.LoginWindow();
+            MainWindow main = new MainWindow();
             main.Show();
         }
     }
