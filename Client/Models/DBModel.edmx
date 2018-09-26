@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HealthManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnamnesisClass">
+          <Key>
+            <PropertyRef Name="AClID" />
+          </Key>
+          <Property Name="AClID" Type="int" Nullable="false" />
+          <Property Name="AClName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AClOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="PlanOver">
+          <Key>
+            <PropertyRef Name="POvID" />
+          </Key>
+          <Property Name="POvID" Type="int" Nullable="false" />
+          <Property Name="PlanID" Type="int" />
+          <Property Name="POvDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Suggest">
+          <Key>
+            <PropertyRef Name="SugID" />
+          </Key>
+          <Property Name="SugID" Type="int" Nullable="false" />
+          <Property Name="SugText" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UAnamnesis">
+          <Key>
+            <PropertyRef Name="AnaID" />
+          </Key>
+          <Property Name="AnaID" Type="int" Nullable="false" />
+          <Property Name="AClID" Type="int" />
+          <Property Name="UserID" Type="varchar" MaxLength="18" />
+          <Property Name="AnaText" Type="text" Nullable="false" />
+          <Property Name="AnaDate" Type="datetime" />
+          <Property Name="AnaCDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="18" />
+          <Property Name="DataUName" Type="varchar" MaxLength="20" />
+          <Property Name="DataSex" Type="int" />
+          <Property Name="DataBirthday" Type="datetime" />
+          <Property Name="DataPhone" Type="char" MaxLength="11" />
+          <Property Name="DataProfession" Type="varchar" MaxLength="20" />
+          <Property Name="DataHeight" Type="float" />
+          <Property Name="DataWeight" Type="float" />
+          <Property Name="BloodPressure" Type="float" />
+          <Property Name="BloodSugar" Type="float" />
+          <Property Name="BloodFat" Type="float" />
+          <Property Name="HeartRate" Type="float" />
+        </EntityType>
+        <EntityType Name="UPlan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="18" />
+          <Property Name="PlanTitle" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PlanText" Type="text" Nullable="false" />
+          <Property Name="PlanDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="UserPassWord" Type="varchar" MaxLength="40" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="UesrImage" Type="image" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_PLANOVER_UPLAN_PLA_UPLAN">
+          <End Role="UPlan" Type="Self.UPlan" Multiplicity="0..1" />
+          <End Role="PlanOver" Type="Self.PlanOver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UPlan">
+              <PropertyRef Name="PlanID" />
+            </Principal>
+            <Dependent Role="PlanOver">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UANAMNES_ANAMNESIS_ANAMNESI">
+          <End Role="AnamnesisClass" Type="Self.AnamnesisClass" Multiplicity="0..1" />
+          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnamnesisClass">
+              <PropertyRef Name="AClID" />
+            </Principal>
+            <Dependent Role="UAnamnesis">
+              <PropertyRef Name="AClID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UANAMNES_USER_UANA_USER">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UAnamnesis">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UDATA_USER_UDAT_USER">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UData" Type="Self.UData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UData">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UPLAN_USER_UPLA_USER">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UPlan" Type="Self.UPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UPlan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HealthManagementModelStoreContainer">
+          <EntitySet Name="AnamnesisClass" EntityType="Self.AnamnesisClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanOver" EntityType="Self.PlanOver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suggest" EntityType="Self.Suggest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UAnamnesis" EntityType="Self.UAnamnesis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UData" EntityType="Self.UData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UPlan" EntityType="Self.UPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PLANOVER_UPLAN_PLA_UPLAN" Association="Self.FK_PLANOVER_UPLAN_PLA_UPLAN">
+            <End Role="UPlan" EntitySet="UPlan" />
+            <End Role="PlanOver" EntitySet="PlanOver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UANAMNES_ANAMNESIS_ANAMNESI" Association="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI">
+            <End Role="AnamnesisClass" EntitySet="AnamnesisClass" />
+            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UANAMNES_USER_UANA_USER" Association="Self.FK_UANAMNES_USER_UANA_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UDATA_USER_UDAT_USER" Association="Self.FK_UDATA_USER_UDAT_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="UData" EntitySet="UData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UPLAN_USER_UPLA_USER" Association="Self.FK_UPLAN_USER_UPLA_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="UPlan" EntitySet="UPlan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HealthManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AnamnesisClass">
+          <Key>
+            <PropertyRef Name="AClID" />
+          </Key>
+          <Property Name="AClID" Type="Int32" Nullable="false" />
+          <Property Name="AClName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AClOrder" Type="Int32" />
+          <NavigationProperty Name="UAnamnesis" Relationship="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI" FromRole="AnamnesisClass" ToRole="UAnamnesis" />
+        </EntityType>
+        <EntityType Name="PlanOver">
+          <Key>
+            <PropertyRef Name="POvID" />
+          </Key>
+          <Property Name="POvID" Type="Int32" Nullable="false" />
+          <Property Name="PlanID" Type="Int32" />
+          <Property Name="POvDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UPlan" Relationship="Self.FK_PLANOVER_UPLAN_PLA_UPLAN" FromRole="PlanOver" ToRole="UPlan" />
+        </EntityType>
+        <EntityType Name="Suggest">
+          <Key>
+            <PropertyRef Name="SugID" />
+          </Key>
+          <Property Name="SugID" Type="Int32" Nullable="false" />
+          <Property Name="SugText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UAnamnesis">
+          <Key>
+            <PropertyRef Name="AnaID" />
+          </Key>
+          <Property Name="AnaID" Type="Int32" Nullable="false" />
+          <Property Name="AClID" Type="Int32" />
+          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="AnaText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnaDate" Type="DateTime" Precision="3" />
+          <Property Name="AnaCDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AnamnesisClass" Relationship="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI" FromRole="UAnamnesis" ToRole="AnamnesisClass" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UANAMNES_USER_UANA_USER" FromRole="UAnamnesis" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="DataUName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DataSex" Type="Int32" />
+          <Property Name="DataBirthday" Type="DateTime" Precision="3" />
+          <Property Name="DataPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="DataProfession" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DataHeight" Type="Double" />
+          <Property Name="DataWeight" Type="Double" />
+          <Property Name="BloodPressure" Type="Double" />
+          <Property Name="BloodSugar" Type="Double" />
+          <Property Name="BloodFat" Type="Double" />
+          <Property Name="HeartRate" Type="Double" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UDATA_USER_UDAT_USER" FromRole="UData" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UPlan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="PlanTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlanText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlanDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PlanOver" Relationship="Self.FK_PLANOVER_UPLAN_PLA_UPLAN" FromRole="UPlan" ToRole="PlanOver" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UPLAN_USER_UPLA_USER" FromRole="UPlan" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassWord" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UesrImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UAnamnesis" Relationship="Self.FK_UANAMNES_USER_UANA_USER" FromRole="User" ToRole="UAnamnesis" />
+          <NavigationProperty Name="UData" Relationship="Self.FK_UDATA_USER_UDAT_USER" FromRole="User" ToRole="UData" />
+          <NavigationProperty Name="UPlan" Relationship="Self.FK_UPLAN_USER_UPLA_USER" FromRole="User" ToRole="UPlan" />
+        </EntityType>
+        <Association Name="FK_UANAMNES_ANAMNESIS_ANAMNESI">
+          <End Role="AnamnesisClass" Type="Self.AnamnesisClass" Multiplicity="0..1" />
+          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnamnesisClass">
+              <PropertyRef Name="AClID" />
+            </Principal>
+            <Dependent Role="UAnamnesis">
+              <PropertyRef Name="AClID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLANOVER_UPLAN_PLA_UPLAN">
+          <End Role="UPlan" Type="Self.UPlan" Multiplicity="0..1" />
+          <End Role="PlanOver" Type="Self.PlanOver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UPlan">
+              <PropertyRef Name="PlanID" />
+            </Principal>
+            <Dependent Role="PlanOver">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UANAMNES_USER_UANA_USER">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UAnamnesis">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UDATA_USER_UDAT_USER">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UData" Type="Self.UData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UData">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UPLAN_USER_UPLA_USER">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UPlan" Type="Self.UPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UPlan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HealthManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnamnesisClass" EntityType="Self.AnamnesisClass" />
+          <EntitySet Name="PlanOver" EntityType="Self.PlanOver" />
+          <EntitySet Name="Suggest" EntityType="Self.Suggest" />
+          <EntitySet Name="UAnamnesis" EntityType="Self.UAnamnesis" />
+          <EntitySet Name="UData" EntityType="Self.UData" />
+          <EntitySet Name="UPlan" EntityType="Self.UPlan" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_UANAMNES_ANAMNESIS_ANAMNESI" Association="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI">
+            <End Role="AnamnesisClass" EntitySet="AnamnesisClass" />
+            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLANOVER_UPLAN_PLA_UPLAN" Association="Self.FK_PLANOVER_UPLAN_PLA_UPLAN">
+            <End Role="UPlan" EntitySet="UPlan" />
+            <End Role="PlanOver" EntitySet="PlanOver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UANAMNES_USER_UANA_USER" Association="Self.FK_UANAMNES_USER_UANA_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UDATA_USER_UDAT_USER" Association="Self.FK_UDATA_USER_UDAT_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="UData" EntitySet="UData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UPLAN_USER_UPLA_USER" Association="Self.FK_UPLAN_USER_UPLA_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="UPlan" EntitySet="UPlan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HealthManagementModelStoreContainer" CdmEntityContainer="HealthManagementEntities">
+          <EntitySetMapping Name="AnamnesisClass">
+            <EntityTypeMapping TypeName="HealthManagementModel.AnamnesisClass">
+              <MappingFragment StoreEntitySet="AnamnesisClass">
+                <ScalarProperty Name="AClID" ColumnName="AClID" />
+                <ScalarProperty Name="AClName" ColumnName="AClName" />
+                <ScalarProperty Name="AClOrder" ColumnName="AClOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanOver">
+            <EntityTypeMapping TypeName="HealthManagementModel.PlanOver">
+              <MappingFragment StoreEntitySet="PlanOver">
+                <ScalarProperty Name="POvID" ColumnName="POvID" />
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="POvDate" ColumnName="POvDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suggest">
+            <EntityTypeMapping TypeName="HealthManagementModel.Suggest">
+              <MappingFragment StoreEntitySet="Suggest">
+                <ScalarProperty Name="SugID" ColumnName="SugID" />
+                <ScalarProperty Name="SugText" ColumnName="SugText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UAnamnesis">
+            <EntityTypeMapping TypeName="HealthManagementModel.UAnamnesis">
+              <MappingFragment StoreEntitySet="UAnamnesis">
+                <ScalarProperty Name="AnaID" ColumnName="AnaID" />
+                <ScalarProperty Name="AClID" ColumnName="AClID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AnaText" ColumnName="AnaText" />
+                <ScalarProperty Name="AnaDate" ColumnName="AnaDate" />
+                <ScalarProperty Name="AnaCDate" ColumnName="AnaCDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UData">
+            <EntityTypeMapping TypeName="HealthManagementModel.UData">
+              <MappingFragment StoreEntitySet="UData">
+                <ScalarProperty Name="DataID" ColumnName="DataID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DataUName" ColumnName="DataUName" />
+                <ScalarProperty Name="DataSex" ColumnName="DataSex" />
+                <ScalarProperty Name="DataBirthday" ColumnName="DataBirthday" />
+                <ScalarProperty Name="DataPhone" ColumnName="DataPhone" />
+                <ScalarProperty Name="DataProfession" ColumnName="DataProfession" />
+                <ScalarProperty Name="DataHeight" ColumnName="DataHeight" />
+                <ScalarProperty Name="DataWeight" ColumnName="DataWeight" />
+                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
+                <ScalarProperty Name="BloodSugar" ColumnName="BloodSugar" />
+                <ScalarProperty Name="BloodFat" ColumnName="BloodFat" />
+                <ScalarProperty Name="HeartRate" ColumnName="HeartRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UPlan">
+            <EntityTypeMapping TypeName="HealthManagementModel.UPlan">
+              <MappingFragment StoreEntitySet="UPlan">
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PlanTitle" ColumnName="PlanTitle" />
+                <ScalarProperty Name="PlanText" ColumnName="PlanText" />
+                <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="HealthManagementModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UesrImage" ColumnName="UesrImage" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

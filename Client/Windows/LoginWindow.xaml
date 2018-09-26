@@ -65,9 +65,7 @@
                     <TextBox Name="tbUserName"  Margin="0,10,0,0"
                          Width="260"
                          Style="{StaticResource LoginInput}"
-                         Foreground="White" CaretBrush="White"
-                             Text="{Binding txt_user}">
-                         
+                         Foreground="White" CaretBrush="White">
                     </TextBox>
                     <Label Style="{StaticResource FLable}" FontSize="28" Content="&#xe617;" VerticalContentAlignment="Center"/>
                 </WrapPanel>

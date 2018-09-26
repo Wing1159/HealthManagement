@@ -9,27 +9,35 @@
 
 
     <!--#region 程序的主题色-->
+    <SolidColorBrush x:Key="AppHead">#002BB666</SolidColorBrush>
     <SolidColorBrush x:Key="AppColor">#FF888888</SolidColorBrush>
-    <SolidColorBrush x:Key="AppColorM">#FF8C8C8C</SolidColorBrush>
-    <SolidColorBrush x:Key="AppColor1">#FF000000</SolidColorBrush>
-    <SolidColorBrush x:Key="AppColorM1">#FF5E49F0</SolidColorBrush>
-    <SolidColorBrush x:Key="TextColor">#FFFFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="TextColor3">#FF5C5C5C</SolidColorBrush>
-    <SolidColorBrush x:Key="TextColor1">#FFFFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="TextColor12">#FF40415D</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuTextColor">#FFFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuTextSelectColor">#FF999999</SolidColorBrush>
+    <SolidColorBrush x:Key="TextTipColor">#FFFFFFFF</SolidColorBrush>
 
     <FontFamily x:Key="AppFont">/Client;component/Resources/#AR DESTINE</FontFamily>
     <FontFamily x:Key="MainFont">微软雅黑</FontFamily>
     <FontFamily x:Key="IconFont">/Client;component/Resources/#iconfont</FontFamily>
     <!--#endregion-->
-    <Style TargetType="TextBox">
-        <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
-        <Setter Property="Background" Value="Transparent"></Setter>
-    </Style>
 
     <!--#region 登录页面的输入框-->
+    <VisualBrush  x:Key="LoginNameBrush" TileMode="None"  AlignmentX="Left" Stretch="None">
+        <VisualBrush.Visual>
+            <Grid Background="#00FFFFFF" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" FontSize="20"  Foreground="{StaticResource TextTipColor}" Text="用户名"/>
+                <!--USERNAME-->
+            </Grid>
+        </VisualBrush.Visual>
+    </VisualBrush>
+
     <Style x:Key="LoginInput" TargetType="TextBox">
         <!--<Setter Property="Foreground" Value="#999999"></Setter>-->
+        <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Foreground" Value="#333333"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
@@ -37,34 +45,14 @@
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="Padding" Value="9,11,9,11"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border Cursor="IBeam" Name="Bd" Background="{TemplateBinding Background}">
-                        <Grid>
-                            <ScrollViewer x:Name="PART_ContentHost"/>
-                            <Grid Background="#00FFFFFF" Visibility="Collapsed" Name="myStackPanel" VerticalAlignment="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="9"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock FontFamily="{StaticResource MainFont}" Grid.Column="1"  Foreground="{StaticResource TextColor1}" 
-                                           Text="用户名" HorizontalAlignment="Stretch"/>
-                                <!--PASSWORD-->
-                            </Grid>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Visibility" TargetName="myStackPanel" Value="Collapsed"/>
-                        </Trigger>
-                        <Trigger Property="loc:PasswordBoxMonitor.PasswordLength" Value="0">
-                            <Setter Property="Visibility" TargetName="myStackPanel" Value="Visible"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource LoginNameBrush}"/>
+            </Trigger>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource LoginNameBrush}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="LoginPassWordInput" TargetType="PasswordBox">
@@ -88,7 +76,7 @@
                                     <ColumnDefinition Width="9"></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock FontFamily="{StaticResource MainFont}" Grid.Column="1"  Foreground="{StaticResource TextColor1}" 
+                                <TextBlock FontFamily="{StaticResource MainFont}" Grid.Column="1"  Foreground="{StaticResource TextTipColor}" 
                                            Text="密码" HorizontalAlignment="Stretch"/>
                                 <!--PASSWORD-->
                             </Grid>
@@ -106,19 +94,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <VisualBrush  x:Key="LoginNameBrush" TileMode="None"  AlignmentX="Left" Stretch="None">
-        <VisualBrush.Visual>
-            <Grid Background="#00FFFFFF" HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="9"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="1" FontSize="20"  Foreground="{StaticResource TextColor1}" Text="用户名"/>
-                <!--USERNAME-->
-            </Grid>
-        </VisualBrush.Visual>
-    </VisualBrush>
     <!--#endregion-->
 
     <!--#region Tab容器-->
@@ -334,7 +309,7 @@
         <Setter Property="Width" Value="140"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
         <Setter Property="Height" Value="45"></Setter>
-        <Setter Property="Foreground" Value="{StaticResource TextColor}"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource MenuTextColor}"></Setter>
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate  TargetType="{x:Type TabItem}">
@@ -343,10 +318,10 @@
                             <ColumnDefinition Width="5"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Border x:Name="y" Margin="0,8,0,8" BorderThickness="5,0,0,0" Visibility="Hidden" BorderBrush="{StaticResource AppColor}" Grid.Column="0"></Border>
+                        <Border x:Name="y" Margin="0,8,0,8" BorderThickness="5,0,0,0" Visibility="Hidden" BorderBrush="{StaticResource MenuTextSelectColor}" Grid.Column="0"></Border>
                         <StackPanel Orientation="Horizontal" x:Name="x" Grid.Column="1">
                             <TextBlock x:Name="Icon" Text="{TemplateBinding Tag}" FontFamily="/Client;component/Resources/#iconfont" FontSize="18" 
-                                       Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"
+                                       Foreground="{StaticResource MenuTextColor}" HorizontalAlignment="Center"
                                        VerticalAlignment="Center" Margin="20,3,5,5"></TextBlock>
                             <ContentPresenter x:Name="Content"  
                                                ContentSource="Header" HorizontalAlignment="Center" 
@@ -356,10 +331,10 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true" >
-                            <Setter Property="Foreground" TargetName="Icon" Value="{StaticResource AppColor}"></Setter>
+                            <Setter Property="Foreground" TargetName="Icon" Value="{StaticResource MenuTextSelectColor}"></Setter>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Foreground" TargetName="Icon" Value="{StaticResource AppColor}"></Setter>
+                            <Setter Property="Foreground" TargetName="Icon" Value="{StaticResource MenuTextSelectColor}"></Setter>
                             <Setter Property="Visibility" TargetName="y" Value="Visible"></Setter>
                         </Trigger>
                         <Trigger Property="Width" Value="60">
@@ -379,7 +354,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="true">
-                <Setter Property="Foreground" Value="{StaticResource AppColor}"></Setter>
+                <Setter Property="Foreground" Value="{StaticResource MenuTextSelectColor}"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -448,11 +423,6 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region DMSkin按钮重新绘制-->
-    <Style x:Key="FDButton" TargetType="controls:DMTextBox">
-        
-    </Style>
-    <!--#endregion-->
     <Style x:Key="FLable" TargetType="Label">
         <Setter Property="FontFamily" Value="/Client;component/Resources/#iconfont" />
         <Setter Property="Background" Value="Transparent"/>

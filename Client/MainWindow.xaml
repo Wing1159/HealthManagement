@@ -51,7 +51,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid Background="#2BB669">
+            <Grid Background="{DynamicResource AppHead}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="159*"/>
                     <ColumnDefinition Width="139*"/>

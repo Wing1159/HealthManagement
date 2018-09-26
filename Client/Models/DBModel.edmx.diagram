@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cda74079d57b45c8ba260883690a65af" Name="Diagram1">
+        <EntityTypeShape EntityType="HealthManagementModel.AnamnesisClass" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthManagementModel.PlanOver" Width="1.5" PointX="6.125" PointY="12" IsExpanded="false" />
+        <EntityTypeShape EntityType="HealthManagementModel.Suggest" Width="1.5" PointX="9.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthManagementModel.UAnamnesis" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthManagementModel.UData" Width="1.5" PointX="2.125" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthManagementModel.UPlan" Width="1.5" PointX="6" PointY="9.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="HealthManagementModel.User" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="HealthManagementModel.FK_UANAMNES_ANAMNESIS_ANAMNESI" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthManagementModel.FK_PLANOVER_UPLAN_PLA_UPLAN" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthManagementModel.FK_UANAMNES_USER_UANA_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthManagementModel.FK_UDATA_USER_UDAT_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthManagementModel.FK_UPLAN_USER_UPLA_USER" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
