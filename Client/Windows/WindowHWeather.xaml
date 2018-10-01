@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Windows"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Foreground="{StaticResource AppColor}"
              d:DesignHeight="200" d:DesignWidth="150">
     <StackPanel>
-        <Label FontSize="25" Content="成都"/>
-        <Label FontSize="16" Content="17℃/22℃"/>
-        <Label FontSize="16" Content="紫外线指数：最弱" />
-        <Label FontSize="16" Content="空气污染指数：良" />
+        <TextBlock FontSize="25" Text="成都"/>
+        <TextBlock FontSize="16" Text="17℃/22℃"/>
+        <TextBlock FontSize="16" Text="紫外线指数：最弱" />
+        <TextBlock FontSize="16" Text="空气污染指数：良" />
     </StackPanel>
     
 </UserControl>

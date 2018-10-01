@@ -23,8 +23,8 @@ namespace Client
 
             //启动窗口
             //Windows.RegisterWindow main = new Windows.RegisterWindow();
-            Windows.LoginWindow main = new Windows.LoginWindow();
-            //MainWindow main = new MainWindow();
+            //Windows.LoginWindow main = new Windows.LoginWindow();
+            MainWindow main = new MainWindow();
             main.Show();
         }
     }

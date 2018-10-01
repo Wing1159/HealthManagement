@@ -24,5 +24,26 @@ namespace Client.Windows
         {
             InitializeComponent();
         }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            btnCancel.Visibility = Visibility.Visible;
+            btnSave.Visibility = Visibility.Visible;
+            btnEdit.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            btnCancel.Visibility = Visibility.Collapsed;
+            btnSave.Visibility = Visibility.Collapsed;
+            btnEdit.Visibility = Visibility.Visible;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            btnCancel.Visibility = Visibility.Collapsed;
+            btnSave.Visibility = Visibility.Collapsed;
+            btnEdit.Visibility = Visibility.Visible;
+        }
     }
 }

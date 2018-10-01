@@ -45,6 +45,7 @@
                             Style="{StaticResource DMSlider}"/>
             </StackPanel>
             <StackPanel Margin="0,60,0,0">
+                
             </StackPanel>
         </Grid>
     </Grid>

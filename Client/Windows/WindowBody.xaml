@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Windows"
              xmlns:controls="clr-namespace:DMSkin.WPF.Controls;assembly=DMSkin.WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450"
              d:DesignWidth="800">
@@ -19,61 +20,99 @@
                 SelectForeground="White"
                 SelectedColor="#FF1E9FFF"
                 TabItemType="Left">
-                <!-- 姓名，性别，出生日期，职业，身高，体重， -->
+                <!-- 姓名，性别，出生日期，职业，电话，身高，体重 -->
                 <StackPanel>
-                    <controls:DMTextBox
+                    <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,10,10">
+                        <Button
+                            Content="&#xe649;"
+                            Style="{StaticResource MenuButton}"
+                            Name="btnSave"
+                            Visibility="Collapsed"
+                            Click="btnSave_Click"/>
+                        <Button
+                            Content="&#xe605;"
+                            Style="{StaticResource MenuButton}"
+                            Name="btnCancel"
+                            Visibility="Collapsed"
+                            Click="btnCancel_Click"/>
+                        <Button
+                            Content="&#xe603;"
+                            Style="{StaticResource MenuButton}"
+                            Name="btnEdit"
+                            Click="btnEdit_Click"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock
+                            Text="姓名"
+                            Style="{StaticResource Lable}"/>
+                        <controls:DMTextBox
                         Width="150"
                         Height="40"
                         Margin="5,15,5,15"
                         CornerRadius="2"
                         Icon="{StaticResource Icon_Safe}"
                         Hint="姓名" />
-                    <WrapPanel HorizontalAlignment="Center">
-                        <Label Content="性别" />
-                        <controls:DMRadioButton
-                            VerticalAlignment="Center"
-                            HorizontalAlignment ="Center"
-                            Content="男"
-                            IconColor="#FF1E9FFF"
-                            IsChecked="True" />
-                        <controls:DMRadioButton
-                            VerticalAlignment="Center"
-                            HorizontalAlignment ="Center"
-                            Content="女"
-                            IconColor="#FF1E9FFF" />
                     </WrapPanel>
-                    <DatePicker 
-                        x:Name="datePickerCtl"
-                        Width="200"
-                        Height="25"
-                        SelectedDateFormat="Short"
-                        FirstDayOfWeek="Monday"
-                        DisplayDateStart="1910/4/1"
-                        DisplayDateEnd= ""
-                        IsTodayHighlighted="False">
-                        <DatePicker.BlackoutDates>
-                            <CalendarDateRange Start="1910/4/1" End=""/>
-                            <CalendarDateRange Start="1910/4/1" End=""/>
-                        </DatePicker.BlackoutDates>
-                    </DatePicker>
-                    <controls:DMTextBox
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBlock
+                            Text="性别"
+                            Style="{StaticResource Lable}"/>
+                        <WrapPanel
+                            Width="150"
+                            Height="40">
+                            <controls:DMRadioButton
+                                Content="男"
+                                IconColor="#FF1E9FFF"
+                                HorizontalAlignment="Center"
+                                IsChecked="True" />
+                            <controls:DMRadioButton
+                                Content="女"
+                                IconColor="#FF1E9FFF"
+                                HorizontalAlignment="Center"/>
+                        </WrapPanel>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock
+                            Text="出生日期"
+                            Style="{StaticResource Lable}"/>
+                        <DatePicker
+                            Width="150"
+                            Height="40"
+                            Style="{DynamicResource DefaultDatePicker}"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock
+                            Text="职业"
+                            Style="{StaticResource Lable}"/>
+                        <controls:DMTextBox
                         Width="150"
                         Height="40"
-                        Margin="0,15,0,15"
+                        Margin="5,15,0,15"
                         CornerRadius="2"
                         Hint="职业" />
-                    <controls:DMTextBox
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock
+                            Text="身高"
+                            Style="{StaticResource Lable}"/>
+                        <controls:DMTextBox
                         Width="150"
                         Height="40"
                         Margin="5,15,5,15"
                         CornerRadius="2"
                         Hint="身高" />
-                    <controls:DMTextBox
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock
+                            Text="体重"
+                            Style="{StaticResource Lable}"/>
+                        <controls:DMTextBox
                         Width="150"
                         Height="40"
                         Margin="5,15,5,15"
                         CornerRadius="2"
                         Hint="体重" />
+                    </WrapPanel>
                 </StackPanel>
             </controls:DMTabItem>
             <controls:DMTabItem
@@ -82,7 +121,19 @@
                 SelectForeground="White"
                 SelectedColor="#FF1E9FFF"
                 TabItemType="Right">
-
+                <StackPanel>
+                    <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Right">
+                        <Button
+                            Content="&#xe649;"
+                            Style="{StaticResource MenuButton}"/>
+                        <Button
+                            Content="&#xe605;"
+                            Style="{StaticResource MenuButton}"/>
+                        <Button
+                            Content="&#xe603;"
+                            Style="{StaticResource MenuButton}"/>
+                    </WrapPanel>
+                </StackPanel>
             </controls:DMTabItem>
         </TabControl>
     </Grid>
