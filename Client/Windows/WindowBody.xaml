@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Client.Windows"
              xmlns:controls="clr-namespace:DMSkin.WPF.Controls;assembly=DMSkin.WPF"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="450"
              d:DesignWidth="800">
@@ -42,16 +43,14 @@
                             Click="btnEdit_Click"/>
                     </WrapPanel>
                     <WrapPanel>
-                        <TextBlock
-                            Text="姓名"
-                            Style="{StaticResource Lable}"/>
-                        <controls:DMTextBox
-                        Width="150"
-                        Height="40"
-                        Margin="5,15,5,15"
-                        CornerRadius="2"
-                        Icon="{StaticResource Icon_Safe}"
-                        Hint="姓名" />
+                        <TextBox
+                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                            VerticalAlignment="Top"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            MaxWidth="200"
+                            MinWidth="100"
+                            materialDesign:HintAssist.Hint="姓名"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
                         <TextBlock
@@ -64,11 +63,13 @@
                                 Content="男"
                                 IconColor="#FF1E9FFF"
                                 HorizontalAlignment="Center"
-                                IsChecked="True" />
+                                IsChecked="True"
+                                Margin="10,8,0,0"/>
                             <controls:DMRadioButton
                                 Content="女"
                                 IconColor="#FF1E9FFF"
-                                HorizontalAlignment="Center"/>
+                                HorizontalAlignment="Center"
+                                Margin="10,8,0,0"/>
                         </WrapPanel>
                     </WrapPanel>
                     <WrapPanel>
@@ -76,20 +77,20 @@
                             Text="出生日期"
                             Style="{StaticResource Lable}"/>
                         <DatePicker
-                            Width="150"
-                            Height="40"
-                            Style="{DynamicResource DefaultDatePicker}"/>
+                            Name="Date"
+                            Width="120"
+                            materialDesign:HintAssist.Hint="出生日期"/>
                     </WrapPanel>
                     <WrapPanel>
-                        <TextBlock
-                            Text="职业"
-                            Style="{StaticResource Lable}"/>
-                        <controls:DMTextBox
-                        Width="150"
-                        Height="40"
-                        Margin="5,15,0,15"
-                        CornerRadius="2"
-                        Hint="职业" />
+                        <TextBox
+                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                            VerticalAlignment="Top"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            MaxWidth="200"
+                            MinWidth="100"
+                            materialDesign:HintAssist.Hint="职业"/>
+
                     </WrapPanel>
                     <WrapPanel>
                         <TextBlock
