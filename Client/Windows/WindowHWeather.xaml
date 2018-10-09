@@ -8,10 +8,45 @@
              Foreground="{StaticResource AppColor}"
              d:DesignHeight="200" d:DesignWidth="150">
     <StackPanel>
-        <TextBlock FontSize="25" Text="成都"/>
-        <TextBlock FontSize="16" Text="17℃/22℃"/>
-        <TextBlock FontSize="16" Text="紫外线指数：最弱" />
-        <TextBlock FontSize="16" Text="空气污染指数：良" />
+        <WrapPanel Margin="0,0,0,6">
+            <TextBlock
+                FontSize="25"
+                Name="tbProvince"
+                Text="{Binding Province}" />
+            <TextBlock
+                FontSize="25"
+                Name="tbCity"
+                Text="{Binding City}"
+                Margin="5,0,0,0"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock
+                FontSize="20"
+                Name="tbIconWeather"
+                Text="{Binding WeatherIcon,Mode=OneWay}"
+                Style="{StaticResource IconText}"/>
+            <TextBlock
+                FontSize="20"
+                Text="{Binding Temperature}"
+                Margin="8,0,0,0"/>
+        </WrapPanel>
+        <TextBlock FontSize="17" Text="{Binding Weather}" HorizontalAlignment="Center"/>
+        <WrapPanel Margin="0,0,0,3">
+            <TextBlock FontSize="16" Text="湿度：" IsEnabled="False"/>
+            <TextBlock FontSize="16" Text="{Binding Humidity}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,0,0,3">
+            <TextBlock FontSize="16" Text="空气质量：" IsEnabled="False"/>
+            <TextBlock FontSize="16" Text="{Binding AirPollutionIndex}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,0,0,3">
+            <TextBlock FontSize="16" Text="风向/风力：" IsEnabled="False"/>
+            <TextBlock FontSize="16" Text="{Binding Wind}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,0,0,3">
+            <TextBlock FontSize="16" Text="紫外线指数：" IsEnabled="False"/>
+            <TextBlock FontSize="16" Text="{Binding UVIndex}" />
+        </WrapPanel>
     </StackPanel>
     
 </UserControl>

@@ -1,5 +1,4 @@
-﻿using Client.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace Client.Windows
 {
     /// <summary>
-    /// WindowMedicalRecord.xaml 的交互逻辑
+    /// WindowRegSlide1.xaml 的交互逻辑
     /// </summary>
-    public partial class WindowMedicalRecord : UserControl
+    public partial class WindowRegSlide1 : UserControl
     {
-        public WindowMedicalRecord()
+        public WindowRegSlide1()
         {
             InitializeComponent();
-            DataContext = new MedicalRecordViewModel();
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿using DMSkin.WPF;
+﻿using Client.ViewModels;
+using DMSkin.WPF;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,10 +27,20 @@ namespace Client.Windows
         public LoginWindow()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel(this);
         }
 
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        private void UserReg_Click(object sender, RoutedEventArgs e)
         {
+            ResetWindow reset = new ResetWindow();
+            reset.Show();
+            Close();
+        }
+
+        private void UserAdd_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterWindow register = new RegisterWindow();
+            register.Show();
             Close();
         }
     }

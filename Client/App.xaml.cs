@@ -1,4 +1,5 @@
-﻿using DMSkin.WPF.API;
+﻿using Client.Models;
+using DMSkin.WPF.API;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +15,7 @@ namespace Client
     /// </summary>
     public partial class App : Application
     {
+        public MainWindow main;
         protected override void OnStartup(StartupEventArgs e)
         {
             //初始化UI Dispatcher
@@ -22,10 +24,10 @@ namespace Client
             ShutdownMode = ShutdownMode.OnLastWindowClose;
 
             //启动窗口
-            //Windows.RegisterWindow main = new Windows.RegisterWindow();
-            //Windows.LoginWindow main = new Windows.LoginWindow();
-            MainWindow main = new MainWindow();
-            main.Show();
+            main = new MainWindow();
+            //Windows.RegisterWindow login = new Windows.RegisterWindow();
+            Windows.LoginWindow login = new Windows.LoginWindow();
+            login.Show();
         }
     }
 }

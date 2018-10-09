@@ -12,10 +12,8 @@
     mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
     FontSize="20" WindowStyle="None" ResizeMode="NoResize"
-    Title="登录" Height="540" Width="880" MinHeight="540" MinWidth="880">
-    <Window.DataContext>
-        <viewmodels:LoginViewModel/>
-    </Window.DataContext>
+    Title="登录" Height="540" Width="880" MinHeight="540" MinWidth="880"
+    Name="Login">
     <Grid>
         <MediaElement Name="myMediaElement" Stretch="Fill" Volume="0">
             <MediaElement.Triggers>
@@ -50,7 +48,8 @@
                     Grid.Column="1">
                     <controls:DMSystemCloseButton
                         DMSystemButtonForeground="White"
-                        DMSystemButtonHoverForeground="White"/>
+                        DMSystemButtonHoverForeground="White"
+                        IsTabStop="False"/>
                 </WrapPanel>
             </Grid>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
@@ -72,11 +71,14 @@
                         Foreground="White" CaretBrush="White"
                         Text="{Binding UserName}">
                     </TextBox>
-                    <Label
-                        Style="{StaticResource FLable}"
+                    <Button
+                        Style="{StaticResource MenuButton}"
                         FontSize="28"
+                        Name="UserAdd"
                         Content="&#xe617;"
-                        VerticalContentAlignment="Center"/>
+                        VerticalContentAlignment="Center"
+                        Click="UserAdd_Click"
+                        IsTabStop="False"/>
                 </WrapPanel>
                 <Border Background="White" Height="1"></Border>
                 <WrapPanel>
@@ -91,11 +93,14 @@
                         c:PasswordHelper.Attach="True"
                         c:PasswordHelper.Password="{Binding UserPassWrod, Mode=TwoWay}">
                     </PasswordBox>
-                    <Label
-                        Style="{StaticResource FLable}"
+                    <Button
+                        Style="{StaticResource MenuButton}"
                         FontSize="28"
+                        Name="UserReg"
                         Content="&#xe67d;"
-                        VerticalContentAlignment="Center"/>
+                        VerticalContentAlignment="Center"
+                        Click="UserReg_Click"
+                        IsTabStop="False"/>
                 </WrapPanel>
                 <Border Background="White" Height="1"></Border>
                 <Button
@@ -103,7 +108,10 @@
                     Content="登录" Margin="0,30,0,0"
                     Height="50"
                     Name="BtnLogin"
-                    Command="{Binding LoginCommand}"/>
+                    Command="{Binding LoginCommand}"
+                    IsDefault="True"
+                    IsTabStop="False">
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

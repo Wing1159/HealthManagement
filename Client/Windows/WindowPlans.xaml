@@ -4,9 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Windows"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <materialDesign:PopupBox Style="{DynamicResource MaterialDesignMultiFloatingActionPopupBox}"
+                                 HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                 Margin="32" Grid.Row="1">
+            <StackPanel>
+                <Button
+                    ToolTip="查看自己计划统计表">
+                    <materialDesign:PackIcon Kind="ChartBar" Height="20" Width="20" />
+                </Button>
+                <Button
+                    ToolTip="添加一个其他计划"
+                    Background="{DynamicResource PrimaryHueMidBrush}"
+                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
+                    <materialDesign:PackIcon Kind="Buffer" />
+                </Button>
+                <Button
+                    ToolTip="添加一个健康计划">
+                    <!-- mix up the colours by brinking in a named palette (see merged dictionaries at top) -->
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource GreenPrimary500}" />
+                    </Button.Background>
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{DynamicResource GreenPrimary500Foreground}" />
+                    </Button.Foreground>
+                    <materialDesign:PackIcon Kind="HumanHandsup" />
+                </Button>
+                <Button ToolTip="添加一个饮食计划"
+                        Background="{DynamicResource SecondaryAccentBrush}"
+                        Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
+                        >
+                    <materialDesign:PackIcon Kind="Food" />
+                </Button>
+                <Button
+                    ToolTip="添加一个运动计划">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource GreenPrimary200}" />
+                    </Button.Background>
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{DynamicResource GreenPrimary200Foreground}" />
+                    </Button.Foreground>
+                    <materialDesign:PackIcon Kind="Run" />
+                </Button>
+            </StackPanel>
+        </materialDesign:PopupBox>
     </Grid>
 </UserControl>

@@ -1,4 +1,4 @@
-﻿using Client.ViewModels;
+﻿using DMSkin.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +11,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Client.Windows
 {
     /// <summary>
-    /// WindowMedicalRecord.xaml 的交互逻辑
+    /// ResetWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class WindowMedicalRecord : UserControl
+    public partial class ResetWindow : DMSkinSimpleWindow
     {
-        public WindowMedicalRecord()
+        public ResetWindow()
         {
             InitializeComponent();
-            DataContext = new MedicalRecordViewModel();
         }
     }
 }

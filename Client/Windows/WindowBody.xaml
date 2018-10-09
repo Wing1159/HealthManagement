@@ -42,7 +42,7 @@
                             Name="btnEdit"
                             Click="btnEdit_Click"/>
                     </WrapPanel>
-                    <WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center">
                         <TextBox
                             Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
                             VerticalAlignment="Top"
@@ -50,12 +50,12 @@
                             TextWrapping="Wrap"
                             MaxWidth="200"
                             MinWidth="100"
+                            FontSize="18"
                             materialDesign:HintAssist.Hint="姓名"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
                         <TextBlock
-                            Text="性别"
-                            Style="{StaticResource Lable}"/>
+                            Text="性别"/>
                         <WrapPanel
                             Width="150"
                             Height="40">
@@ -72,16 +72,13 @@
                                 Margin="10,8,0,0"/>
                         </WrapPanel>
                     </WrapPanel>
-                    <WrapPanel>
-                        <TextBlock
-                            Text="出生日期"
-                            Style="{StaticResource Lable}"/>
+                    <WrapPanel HorizontalAlignment="Center">
                         <DatePicker
                             Name="Date"
                             Width="120"
                             materialDesign:HintAssist.Hint="出生日期"/>
                     </WrapPanel>
-                    <WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center">
                         <TextBox
                             Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
                             VerticalAlignment="Top"
@@ -89,30 +86,31 @@
                             TextWrapping="Wrap"
                             MaxWidth="200"
                             MinWidth="100"
+                            FontSize="18"
                             materialDesign:HintAssist.Hint="职业"/>
-
                     </WrapPanel>
-                    <WrapPanel>
-                        <TextBlock
-                            Text="身高"
-                            Style="{StaticResource Lable}"/>
-                        <controls:DMTextBox
-                        Width="150"
-                        Height="40"
-                        Margin="5,15,5,15"
-                        CornerRadius="2"
-                        Hint="身高" />
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox
+                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                            VerticalAlignment="Top"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            MaxWidth="200"
+                            MinWidth="100"
+                            FontSize="18"
+                            materialDesign:HintAssist.Hint="身高"/>
                     </WrapPanel>
-                    <WrapPanel>
-                        <TextBlock
-                            Text="体重"
-                            Style="{StaticResource Lable}"/>
-                        <controls:DMTextBox
-                        Width="150"
-                        Height="40"
-                        Margin="5,15,5,15"
-                        CornerRadius="2"
-                        Hint="体重" />
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox
+                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                            VerticalAlignment="Top"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            MaxWidth="200"
+                            MinWidth="100"
+                            FontSize="18"
+                            
+                            materialDesign:HintAssist.Hint="体重"/>
                     </WrapPanel>
                 </StackPanel>
             </controls:DMTabItem>
