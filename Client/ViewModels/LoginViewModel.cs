@@ -9,6 +9,7 @@ namespace Client.ViewModels
 {
     class LoginViewModel:ViewModelBase
     {
+        #region 属性
         /// <summary>
         /// 添加Window属性
         /// </summary>
@@ -36,8 +37,13 @@ namespace Client.ViewModels
                 OnPropertyChanged("UserPassWrod");
             }
         }
-        public DelegateCommand LoginCommand { get; private set; }
+        #endregion
 
+        #region 方法
+        public DelegateCommand LoginCommand { get; private set; }
+        /// <summary>
+        /// 登陆
+        /// </summary>
         private void login()
         {
             //string mes = string.Format("{0},{1}", userName, userPassWord);
@@ -65,19 +71,13 @@ namespace Client.ViewModels
                 else
                 {
                     window.Close();
-                    MainWindow main = new MainWindow();
-                    main.Show();
+                    //new MainWindow().Show();
                 }
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        public LoginViewModel()
-        {
-            LoginCommand = new DelegateCommand(login);
         }
         /// <summary>
         /// 构造函数，接收window作为参数
@@ -87,5 +87,6 @@ namespace Client.ViewModels
             LoginCommand = new DelegateCommand(login);
             window = (DMSkin.WPF.DMSkinSimpleWindow)win;
         }
+        #endregion
     }
 }

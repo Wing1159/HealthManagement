@@ -1,4 +1,5 @@
-﻿using Client.ViewModels;
+﻿using Client.Models;
+using Client.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,12 @@ namespace Client.Windows
         {
             InitializeComponent();
             //DataContext = new WeatherViewModel();
+            tbIconWeather.Text = "&#xe6ca;";
+        }
+
+        private void tbIconWeather_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            //tbIconWeather.Text = StringToIconString.Weather(tbIconWeather.Text);
         }
     }
 }

@@ -13,33 +13,6 @@ namespace Client.ViewModels
 {
     public class StartWindowViewModel:ViewModelBase
     {
-        //单层
-        public ICommand ComplexWindowCommand
-        {
-            get
-            {
-                return new DelegateCommand(obj =>
-                {
-                    //UI线程执行
-                    Execute.OnUIThread(() =>
-                    {
-                        //new ComplexWindow().Show();
-                    });
-                });
-            }
-        }
-        //双层带系统动画
-        public ICommand SimpleWindowCommand
-        {
-            get
-            {
-                return new DelegateCommand(obj =>
-                {
-                    //new SimpleWindow().Show();
-                });
-            }
-        }
-
         private Color _DMWindowShadowColor;
 
         /// <summary>

@@ -9,6 +9,6 @@ namespace Client.Models
     public class Auth
     {
         public static bool IsLogin = false;
-        public static string User;
+        public static string User = "Wing";
     }
 }

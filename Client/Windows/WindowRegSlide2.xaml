@@ -6,34 +6,49 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Client.Windows"
              mc:Ignorable="d" 
+             Foreground="{StaticResource AppColor}"
              d:DesignHeight="450" d:DesignWidth="880">
-    <Grid>
+    <Grid
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center">
         <StackPanel>
             <TextBox
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
                 MaxWidth="250"
-                MinWidth="100"
+                MinWidth="250"
                 FontSize="18"
                 Margin="0,10,0,10"
+                Text="{Binding Email}"
                 materialDesign:HintAssist.Hint="邮箱地址"/>
-            <TextBox
-                Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
-                AcceptsReturn="True"
-                TextWrapping="Wrap"
-                MaxWidth="250"
-                MinWidth="100"
-                FontSize="18"
-                Margin="0,10,0,10"
-                materialDesign:HintAssist.Hint="验证码"/>
+            <WrapPanel
+                HorizontalAlignment="Center"
+                Margin="0,10,0,10">
+                <TextBox
+                    Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    MaxWidth="250"
+                    MinWidth="160"
+                    FontSize="18"
+                    Name="tbVCode"
+                    Text="{Binding VCode}"
+                    materialDesign:HintAssist.Hint="验证码"/>
+                <Button
+                    Style="{StaticResource MenuButton}"
+                    Content="获取验证码"
+                    FontSize="15"
+                    Width="87"
+                    Height="22"
+                    Command="{Binding VCodeGetCommand}"/>
+            </WrapPanel>
             <WrapPanel
                 HorizontalAlignment="Center"
                 Margin="0,0,0,10">
                 <Button
-                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
-                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
-                Margin="16 0 0 0">
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
                     <materialDesign:PackIcon Kind="StepForward" />
                 </Button>
             </WrapPanel>

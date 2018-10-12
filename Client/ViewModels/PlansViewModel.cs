@@ -10,6 +10,14 @@ namespace Client.ViewModels
 {
     class PlansViewModel: ViewModelBase
     {
+        #region 属性
+        #endregion
 
+        #region 方法
+        public PlansViewModel()
+        {
+
+        }
+        #endregion
     }
 }

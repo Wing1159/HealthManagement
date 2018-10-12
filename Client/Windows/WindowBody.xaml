@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Client.Windows"
              xmlns:controls="clr-namespace:DMSkin.WPF.Controls;assembly=DMSkin.WPF"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d" 
              d:DesignHeight="450"
              d:DesignWidth="800">
@@ -48,8 +47,8 @@
                             VerticalAlignment="Top"
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
-                            MaxWidth="200"
-                            MinWidth="100"
+                            MaxWidth="180"
+                            MinWidth="180"
                             FontSize="18"
                             materialDesign:HintAssist.Hint="姓名"/>
                     </WrapPanel>
@@ -75,7 +74,7 @@
                     <WrapPanel HorizontalAlignment="Center">
                         <DatePicker
                             Name="Date"
-                            Width="120"
+                            Width="180"
                             materialDesign:HintAssist.Hint="出生日期"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
@@ -84,8 +83,8 @@
                             VerticalAlignment="Top"
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
-                            MaxWidth="200"
-                            MinWidth="100"
+                            MaxWidth="180"
+                            MinWidth="180"
                             FontSize="18"
                             materialDesign:HintAssist.Hint="职业"/>
                     </WrapPanel>
@@ -95,8 +94,8 @@
                             VerticalAlignment="Top"
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
-                            MaxWidth="200"
-                            MinWidth="100"
+                            MaxWidth="180"
+                            MinWidth="180"
                             FontSize="18"
                             materialDesign:HintAssist.Hint="身高"/>
                     </WrapPanel>
@@ -106,8 +105,8 @@
                             VerticalAlignment="Top"
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
-                            MaxWidth="200"
-                            MinWidth="100"
+                            MaxWidth="180"
+                            MinWidth="180"
                             FontSize="18"
                             
                             materialDesign:HintAssist.Hint="体重"/>

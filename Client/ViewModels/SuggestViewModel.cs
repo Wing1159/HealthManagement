@@ -8,6 +8,7 @@ namespace Client.ViewModels
 {
     class SuggestViewModel
     {
+        #region 属性
         private string suggest;
 
         public string Suggest
@@ -15,11 +16,13 @@ namespace Client.ViewModels
             get { return suggest; }
             set { suggest = value; }
         }
+        #endregion
 
-
+        #region 方法
         public SuggestViewModel()
         {
 
         }
+        #endregion
     }
 }

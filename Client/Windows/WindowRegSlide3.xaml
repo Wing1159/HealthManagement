@@ -4,11 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Windows"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
+             Foreground="{StaticResource AppColor}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>
-            注册完成
-        </TextBlock>
+        <StackPanel
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TextBlock
+                Text="注册完成"
+                FontSize="40"/>
+            <Button
+                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                Margin="0 10 0 10"
+                Command="{Binding ReplyCommand}">
+                <materialDesign:PackIcon Kind="Reply"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

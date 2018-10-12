@@ -32,15 +32,13 @@ namespace Client.Windows
 
         private void UserReg_Click(object sender, RoutedEventArgs e)
         {
-            ResetWindow reset = new ResetWindow();
-            reset.Show();
+            new ResetWindow().Show();
             Close();
         }
 
         private void UserAdd_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow register = new RegisterWindow();
-            register.Show();
+            new RegisterWindow().Show();
             Close();
         }
     }

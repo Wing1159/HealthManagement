@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Client.ViewModels;
 using DMSkin.WPF;
 
 namespace Client.Windows
@@ -23,6 +24,7 @@ namespace Client.Windows
         public RegisterWindow()
         {
             InitializeComponent();
+            DataContext = new UserViewModel(this);
         }
     }
 }

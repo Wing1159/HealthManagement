@@ -6,17 +6,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:local="clr-namespace:Client.Windows"
+    xmlns:c="clr-namespace:Client.Controls"
+    Foreground="{StaticResource AppColor}"
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="880">
-    <Grid>
+    <Grid
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center">
         <StackPanel>
+            <PasswordBox
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                MaxWidth="250"
+                MinWidth="250"
+                FontSize="18"
+                Margin="0,10,0,10"
+                Name="pwdUserPwd"
+                c:PasswordHelper.Attach="True"
+                c:PasswordHelper.Password="{Binding UserPWD}"
+                materialDesign:HintAssist.Hint="密码"/>
+            <PasswordBox
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                MaxWidth="250"
+                MinWidth="250"
+                FontSize="18"
+                Margin="0,10,0,10"
+                Name="pwdUserPwd2"
+                c:PasswordHelper.Attach="True"
+                c:PasswordHelper.Password="{Binding UserPWD2}"
+                materialDesign:HintAssist.Hint="确认密码"/>
             <WrapPanel
                 HorizontalAlignment="Center"
                 Margin="0,0,0,10">
                 <Button
-                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
-                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
-                Margin="16 0 0 0">
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
                     <materialDesign:PackIcon Kind="StepForward" />
                 </Button>
             </WrapPanel>

@@ -13,6 +13,7 @@ namespace Client.ViewModels
 {
     class WeatherViewModel: ViewModelBase
     {
+        #region 属性
         private string province;
 
         public string Province
@@ -113,8 +114,9 @@ namespace Client.ViewModels
                 OnPropertyChanged("Wind");
             }
         }
+        #endregion
 
-
+        #region 方法
         public WeatherViewModel()
         {
             WebRequest wr = WebRequest.Create("http://pv.sohu.com/cityjson");
@@ -133,7 +135,8 @@ namespace Client.ViewModels
                     weather = str[6];
                     weather = weather.Replace(weather.Substring(0, weather.IndexOf(' ') + 1), null);
                     weather = weather.Trim();
-                    weatherIcon = StringToIconString.Weather(weather);
+                    //weatherIcon = StringToIconString.Weather(weather);
+                    weatherIcon = weather;
                     string tmp = str[10];
                     tmp = tmp.Replace("。", "；");
                     tmp = tmp.Replace("今日天气实况：", null);
@@ -150,5 +153,6 @@ namespace Client.ViewModels
                 }
             }
         }
+        #endregion
     }
 }

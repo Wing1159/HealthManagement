@@ -1,4 +1,5 @@
-﻿using DMSkin.WPF;
+﻿using Client.ViewModels;
+using DMSkin.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Client.Windows
         public ResetWindow()
         {
             InitializeComponent();
+            DataContext = new UserViewModel(this);
         }
     }
 }

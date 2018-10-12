@@ -3,6 +3,7 @@ using DMSkin;
 using Microsoft.Practices.Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 
@@ -10,10 +11,11 @@ namespace Client.ViewModels
 {
     class MedicalRecordViewModel: ViewModelBase
     {
-        
-        private List<UAnamnesis> anamnesis;
+        #region 属性
+        private HealthManagementEntities db = new HealthManagementEntities();
+        private IEnumerable<UAnamnesis> anamnesis;
 
-        public List<UAnamnesis> Anamnesis
+        public IEnumerable<UAnamnesis> Anamnesis
         {
             get { return anamnesis; }
             set
@@ -22,21 +24,30 @@ namespace Client.ViewModels
                 OnPropertyChanged("Anamnesis");
             }
         }
+        #endregion
 
-        public MedicalRecordViewModel()
+        #region 方法
+        /// <summary>
+        /// 病历同步
+        /// </summary>
+        public DelegateCommand SynchronousCommand { get; private set; }
+        private void synchronous()
         {
             try
             {
-                using (HealthManagementEntities db = new HealthManagementEntities())
-                {
-                    anamnesis = db.UAnamnesis.ToList();
-
-                }
+                Anamnesis = (from a in db.UAnamnesis
+                             where a.UserID == Auth.User
+                             select a).ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+        public MedicalRecordViewModel()
+        {
+            SynchronousCommand = new DelegateCommand(synchronous);
+        }
+        #endregion
     }
 }

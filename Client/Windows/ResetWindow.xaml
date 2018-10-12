@@ -56,8 +56,9 @@
             </Grid>
             <StackPanel VerticalAlignment="Top" >
                 <ProgressBar
-                    Value="0"
+                    Value="{Binding WindowPB}"
                     Height="10"
+                    Background="{StaticResource AppColor}"
                     Margin="20,45,20,0"/>
             </StackPanel>
             <StackPanel Margin="0,70,0,0">

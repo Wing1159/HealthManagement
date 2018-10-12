@@ -26,5 +26,17 @@ namespace Client.Windows
             InitializeComponent();
             DataContext = new MedicalRecordViewModel();
         }
+
+        private void btnSynchronous_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MessageBox.Show(dgAnamnesis.Items.Count.ToString());
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

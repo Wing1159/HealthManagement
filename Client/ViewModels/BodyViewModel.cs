@@ -10,9 +10,15 @@ namespace Client.ViewModels
 {
     class BodyViewModel: ViewModelBase
     {
+        #region 属性
+
+        #endregion
+
+        #region 方法
         public BodyViewModel()
         {
 
         }
+        #endregion
     }
 }

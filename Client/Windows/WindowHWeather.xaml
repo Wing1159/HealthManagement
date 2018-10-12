@@ -23,8 +23,9 @@
             <TextBlock
                 FontSize="20"
                 Name="tbIconWeather"
+                Style="{StaticResource IconText}"
                 Text="{Binding WeatherIcon,Mode=OneWay}"
-                Style="{StaticResource IconText}"/>
+                DataContextChanged="tbIconWeather_DataContextChanged"/>
             <TextBlock
                 FontSize="20"
                 Text="{Binding Temperature}"
@@ -45,8 +46,7 @@
         </WrapPanel>
         <WrapPanel Margin="0,0,0,3">
             <TextBlock FontSize="16" Text="紫外线指数：" IsEnabled="False"/>
-            <TextBlock FontSize="16" Text="{Binding UVIndex}" />
+            <TextBlock FontSize="16" Text="{Binding UVIndex}"/>
         </WrapPanel>
     </StackPanel>
-    
 </UserControl>

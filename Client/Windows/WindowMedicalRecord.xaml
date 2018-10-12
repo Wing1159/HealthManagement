@@ -28,7 +28,10 @@
             </controls:DMButton>
             <controls:DMButton
                 Width="30"
-                Height="30">
+                Height="30"
+                Name="btnSynchronous"
+                Click="btnSynchronous_Click"
+                Command="{Binding SynchronousCommand}">
                 <Label Style="{StaticResource FLable}"
                        Content="&#xe6f8;"
                        FontSize="16"
@@ -37,10 +40,11 @@
         </WrapPanel>
         <DataGrid
             Margin="0 40 15 0"
-            ItemsSource="{Binding Anamnesis}"
+            ItemsSource="{Binding Anamnesis, Mode=OneWay}"
             CanUserSortColumns="True"
             CanUserAddRows="False"
             AutoGenerateColumns="False"
+            Name="dgAnamnesis"
             materialDesign:DataGridAssist.CellPadding="13 8 8 8"
             materialDesign:DataGridAssist.ColumnHeaderPadding="8">
             <DataGrid.Columns>
@@ -61,27 +65,26 @@
                 <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
                 <materialDesign:MaterialDataGridComboBoxColumn
                     Header="病史类型"
-                    SelectedValueBinding="{Binding AClID}"
-                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
+                    SelectedValueBinding="{Binding AClID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.AClass}" />
                 <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
                 <materialDesign:MaterialDataGridTextColumn
-                    Binding="{Binding AnaText}"
+                    Binding="{Binding AnaText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="内容"
-                    MaxLength="500"
-                    Width="200"
+                    Width="Auto"
+                    MaxWidth="600"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                 <!-- set a max length to get an indicator in the editor -->
                 <materialDesign:MaterialDataGridTextColumn
-                    Binding="{Binding AnaDate, StringFormat={}{0:yyyy/MM/dd}}"
+                    Binding="{Binding AnaDate, StringFormat={}{0:yyyy/MM/dd}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="病史时间"
-                    MaxLength="50" 
+                    MaxLength="100" 
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
                 <materialDesign:MaterialDataGridTextColumn
-                    Binding="{Binding AnaCDate, StringFormat={}{0:yyyy/MM/dd}}"
+                    Binding="{Binding AnaCDate, StringFormat={}{0:yyyy/MM/dd}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="创建时间"
-                    Width="50"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
-                </materialDesign:MaterialDataGridTextColumn>
+                    Width="100"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
             </DataGrid.Columns>
         </DataGrid>
         <!--<WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
