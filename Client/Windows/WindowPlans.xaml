@@ -43,7 +43,7 @@
                     <materialDesign:PackIcon Kind="Food" />
                 </Button>
                 <Button
-                    ToolTip="添加一个运动计划">
+                    ToolTip="添加一个计划">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource GreenPrimary200}" />
                     </Button.Background>

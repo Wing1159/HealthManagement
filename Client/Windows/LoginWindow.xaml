@@ -49,10 +49,13 @@
                     <controls:DMSystemCloseButton
                         DMSystemButtonForeground="White"
                         DMSystemButtonHoverForeground="White"
-                        IsTabStop="False"/>
+                        IsTabStop="False"
+                        ToolTip="关闭"/>
                 </WrapPanel>
             </Grid>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="300">
                 <!--头像-->
                 <Ellipse Width="105" Height="105" Margin="0,0,0,30">
                     <Ellipse.Effect>
@@ -77,6 +80,7 @@
                         Name="UserAdd"
                         Content="&#xe617;"
                         VerticalContentAlignment="Center"
+                        ToolTip="添加用户"
                         Click="UserAdd_Click"
                         IsTabStop="False"/>
                 </WrapPanel>
@@ -100,6 +104,7 @@
                         Content="&#xe67d;"
                         VerticalContentAlignment="Center"
                         Click="UserReg_Click"
+                        ToolTip="忘记密码"
                         IsTabStop="False"/>
                 </WrapPanel>
                 <Border Background="White" Height="1"></Border>
@@ -108,11 +113,12 @@
                     Content="登录" Margin="0,30,0,0"
                     Height="50"
                     Name="BtnLogin"
-                    Command="{Binding LoginCommand}"
                     IsDefault="True"
-                    IsTabStop="False">
+                    IsTabStop="False"
+                    Command="{Binding LoginCommand}">
                 </Button>
             </StackPanel>
+            <local:LoadingWindow x:Name="_loading"  Visibility="Collapsed"/>
         </Grid>
     </Grid>
 </DMSkin:DMSkinSimpleWindow>

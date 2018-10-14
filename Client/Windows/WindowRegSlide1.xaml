@@ -22,7 +22,7 @@
                 Margin="0,10,0,10"
                 Text="{Binding UserID}"
                 Name="tbUser"
-                materialDesign:HintAssist.Hint="用户名"/>
+                materialDesign:HintAssist.Hint="账号"/>
             <PasswordBox
                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                 MaxWidth="250"

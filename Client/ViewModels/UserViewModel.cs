@@ -69,23 +69,26 @@ namespace Client.ViewModels
         /// 用户注册
         /// </summary>
         public DelegateCommand RegiserCommand { get; private set; }
-        private void regiser()
+        private void Regiser()
         {
-
+            
         }
         /// <summary>
         /// 重置密码
         /// </summary>
         public DelegateCommand ResetCommand { get; private set; }
-        private void reset()
+        private void Reset()
         {
+            using (HealthManagementEntities db = new HealthManagementEntities())
+            {
 
+            }
         }
         /// <summary>
         /// 返回登陆界面
         /// </summary>
         public DelegateCommand ReplyCommand { get; private set; }
-        private void reply()
+        private void Reply()
         {
             new LoginWindow().Show();
             window.Close();
@@ -110,14 +113,17 @@ namespace Client.ViewModels
         /// 查找用户名
         /// </summary>
         public DelegateCommand FindUserIDCommand { get; private set; }
-        private void findUserID()
+        private void FindUserID()
         {
+            using (HealthManagementEntities db = new HealthManagementEntities())
+            {
 
+            }
         }
         /// <summary>
         /// 下一页
         /// </summary>
-        private void next()
+        private void Next()
         {
             
         }
@@ -126,12 +132,12 @@ namespace Client.ViewModels
         /// </summary>
         public UserViewModel()
         {
-            RegiserCommand = new DelegateCommand(regiser);
-            ResetCommand = new DelegateCommand(reset);
-            ReplyCommand = new DelegateCommand(reply);
+            RegiserCommand = new DelegateCommand(Regiser);
+            ResetCommand = new DelegateCommand(Reset);
+            ReplyCommand = new DelegateCommand(Reply);
             VCodeGetCommand = new DelegateCommand(_VCodeGet);
             VCodeVerCommand = new DelegateCommand(_VCodeVer);
-            FindUserIDCommand = new DelegateCommand(findUserID);
+            FindUserIDCommand = new DelegateCommand(FindUserID);
         }
         /// <summary>
         /// 构造函数
@@ -139,12 +145,12 @@ namespace Client.ViewModels
         /// <param name="win">窗体对象</param>
         public UserViewModel(object win)
         {
-            RegiserCommand = new DelegateCommand(regiser);
-            ResetCommand = new DelegateCommand(reset);
-            ReplyCommand = new DelegateCommand(reply);
+            RegiserCommand = new DelegateCommand(Regiser);
+            ResetCommand = new DelegateCommand(Reset);
+            ReplyCommand = new DelegateCommand(Reply);
             VCodeGetCommand = new DelegateCommand(_VCodeGet);
             VCodeVerCommand = new DelegateCommand(_VCodeVer);
-            FindUserIDCommand = new DelegateCommand(findUserID);
+            FindUserIDCommand = new DelegateCommand(FindUserID);
             window = (DMSkin.WPF.DMSkinSimpleWindow)win;
         }
         #endregion

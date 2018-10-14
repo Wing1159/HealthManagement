@@ -27,7 +27,7 @@ namespace Client
             main = new MainWindow();
             MainWindow = main;
             main.Show();
-            ////Windows.RegisterWindow login = new Windows.RegisterWindow();
+            //Windows.RegisterWindow login = new Windows.RegisterWindow();
             //Windows.LoginWindow login = new Windows.LoginWindow();
             //login.ShowDialog();
             ////判断是否登陆

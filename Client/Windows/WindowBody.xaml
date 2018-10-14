@@ -28,17 +28,20 @@
                             Style="{StaticResource MenuButton}"
                             Name="btnSave"
                             Visibility="Collapsed"
+                            ToolTip="保存"
                             Click="btnSave_Click"/>
                         <Button
                             Content="&#xe605;"
                             Style="{StaticResource MenuButton}"
                             Name="btnCancel"
+                            ToolTip="取消"
                             Visibility="Collapsed"
                             Click="btnCancel_Click"/>
                         <Button
                             Content="&#xe603;"
                             Style="{StaticResource MenuButton}"
                             Name="btnEdit"
+                            ToolTip="修改"
                             Click="btnEdit_Click"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
@@ -53,23 +56,18 @@
                             materialDesign:HintAssist.Hint="姓名"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBlock
-                            Text="性别"/>
-                        <WrapPanel
-                            Width="150"
-                            Height="40">
-                            <controls:DMRadioButton
-                                Content="男"
-                                IconColor="#FF1E9FFF"
-                                HorizontalAlignment="Center"
-                                IsChecked="True"
-                                Margin="10,8,0,0"/>
-                            <controls:DMRadioButton
-                                Content="女"
-                                IconColor="#FF1E9FFF"
-                                HorizontalAlignment="Center"
-                                Margin="10,8,0,0"/>
-                        </WrapPanel>
+                        <ComboBox
+                            materialDesign:HintAssist.Hint="性别"
+                            MaxWidth="180"
+                            MinWidth="180"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem>
+                                男
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                女
+                            </ComboBoxItem>
+                        </ComboBox>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
                         <DatePicker

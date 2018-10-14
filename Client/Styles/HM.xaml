@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="9"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="1" FontSize="20"  Foreground="{StaticResource TextTipColor}" Text="用户名"/>
+                <TextBlock Grid.Column="1" FontSize="20"  Foreground="{StaticResource TextTipColor}" Text="账号"/>
                 <!--USERNAME-->
             </Grid>
         </VisualBrush.Visual>

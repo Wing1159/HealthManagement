@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Client.Windows
         public WindowBody()
         {
             InitializeComponent();
+            DataContext = new BodyViewModel();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

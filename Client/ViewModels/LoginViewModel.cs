@@ -1,4 +1,5 @@
 ﻿using Client.Models;
+using Client.Windows;
 using DMSkin;
 using Microsoft.Practices.Prism.Commands;
 using System;
@@ -10,10 +11,8 @@ namespace Client.ViewModels
     class LoginViewModel:ViewModelBase
     {
         #region 属性
-        /// <summary>
-        /// 添加Window属性
-        /// </summary>
-        private DMSkin.WPF.DMSkinSimpleWindow window { get; set; }
+        // 添加Window属性
+        private static LoginWindow window { get; set; }
         private string userName;
 
         public string UserName
@@ -50,6 +49,20 @@ namespace Client.ViewModels
             //MessageBox.Show(mes);
             try
             {
+                if (userName == null || userName == "")
+                {
+                    CloseLoading("请输入账号！");
+                    window.tbUserName.Focus();
+                    return;
+                    
+                }
+                else if (userPassWord == null || userPassWord == "")
+                {
+                    CloseLoading("请输入密码！");
+                    window.pbUserPWD.Focus();
+                    return;
+                }
+                window._loading.Visibility = Visibility.Visible;
                 using (HealthManagementEntities db = new HealthManagementEntities())
                 {
                     var user = from u in db.User
@@ -66,7 +79,9 @@ namespace Client.ViewModels
                 }
                 if (Auth.IsLogin == false)
                 {
-                    MessageBox.Show("请检查用户名和密码");
+                    CloseLoading("请检查用户名和密码");
+                    UserPassWrod = null;
+                    window.pbUserPWD.Focus();
                 }
                 else
                 {
@@ -77,6 +92,7 @@ namespace Client.ViewModels
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                CloseLoading();
             }
         }
         /// <summary>
@@ -85,7 +101,23 @@ namespace Client.ViewModels
         public LoginViewModel(object win)
         {
             LoginCommand = new DelegateCommand(login);
-            window = (DMSkin.WPF.DMSkinSimpleWindow)win;
+            window = (LoginWindow)win;
+        }
+        /// <summary>
+        /// 关闭遮罩控件
+        /// </summary>
+        public static void CloseLoading()
+        {
+            window._loading.Visibility = Visibility.Collapsed;
+        }
+        /// <summary>
+        /// 关闭遮罩控件，并提示错误
+        /// </summary>
+        /// <param name="err">错误信息字符</param>
+        public static void CloseLoading(string err)
+        {
+            MessageBox.Show(err);
+            window._loading.Visibility = Visibility.Collapsed;
         }
         #endregion
     }
