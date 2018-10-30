@@ -12,7 +12,7 @@
     mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
     FontSize="20" WindowStyle="None" ResizeMode="NoResize"
-    Title="登陆" Height="540" Width="880" MinHeight="540" MinWidth="880">
+    Title="注册" Height="540" Width="880" MinHeight="540" MinWidth="880">
     <Window.DataContext>
         <viewmodels:UserViewModel/>
     </Window.DataContext>
@@ -23,8 +23,9 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <MediaTimeline Source="pack://siteoforigin:,,,/Resources/bg.mp4" Storyboard.TargetName="myMediaElement"    
-        RepeatBehavior="Forever" />
+                                <MediaTimeline Source="pack://siteoforigin:,,,/Resources/bg.mp4"
+                                               Storyboard.TargetName="myMediaElement"
+                                               RepeatBehavior="Forever" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -64,6 +65,7 @@
                 <!-- the transitioner will manage your transitions. notice how SelectedIndex is set to zero: the first slide (instead of the default of -1) -->
                 <materialDesign:Transitioner
                     SelectedIndex="0"
+                    Name="Step"
                     AutoApplyTransitionOrigins="True">
                     <materialDesign:Transitioner.InputBindings>
                         <KeyBinding

@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace Client.Windows
 {
     /// <summary>
-    /// WindowHSuggest.xaml 的交互逻辑
+    /// WindowPatient.xaml 的交互逻辑
     /// </summary>
-    public partial class WindowHSuggest : UserControl
+    public partial class WindowPatient : UserControl
     {
-        public WindowHSuggest()
+        public WindowPatient()
         {
             InitializeComponent();
-            DataContext = new SuggestViewModel();
+            DataContext = new PatientDataViewModel(this);
         }
     }
 }

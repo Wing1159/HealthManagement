@@ -24,7 +24,7 @@ namespace Client.Windows
         public WindowBody()
         {
             InitializeComponent();
-            DataContext = new BodyViewModel();
+            DataContext = new PatientDataViewModel(this);
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -32,6 +32,7 @@ namespace Client.Windows
             btnCancel.Visibility = Visibility.Visible;
             btnSave.Visibility = Visibility.Visible;
             btnEdit.Visibility = Visibility.Collapsed;
+            ControlEnabled(true);
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -39,6 +40,7 @@ namespace Client.Windows
             btnCancel.Visibility = Visibility.Collapsed;
             btnSave.Visibility = Visibility.Collapsed;
             btnEdit.Visibility = Visibility.Visible;
+            ControlEnabled(false);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -46,6 +48,17 @@ namespace Client.Windows
             btnCancel.Visibility = Visibility.Collapsed;
             btnSave.Visibility = Visibility.Collapsed;
             btnEdit.Visibility = Visibility.Visible;
+            ControlEnabled(false);
+        }
+        private void ControlEnabled(bool IsEnabled)
+        {
+            tbHeight.IsEnabled = IsEnabled;
+            tbName.IsEnabled = IsEnabled;
+            tbPhone.IsEnabled = IsEnabled;
+            tbProfession.IsEnabled = IsEnabled;
+            tbWeight.IsEnabled = IsEnabled;
+            cbSex.IsEnabled = IsEnabled;
+            dpBirthday.IsEnabled = IsEnabled;
         }
     }
 }

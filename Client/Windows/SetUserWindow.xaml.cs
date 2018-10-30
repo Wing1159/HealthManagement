@@ -1,5 +1,4 @@
-﻿using Client.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace Client.Windows
 {
     /// <summary>
-    /// WindowHSuggest.xaml 的交互逻辑
+    /// SetUserWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class WindowHSuggest : UserControl
+    public partial class SetUserWindow : UserControl
     {
-        public WindowHSuggest()
+        public SetUserWindow()
         {
             InitializeComponent();
-            DataContext = new SuggestViewModel();
         }
     }
 }

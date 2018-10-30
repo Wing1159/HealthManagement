@@ -110,19 +110,19 @@
                     <windows:WindowHome Margin="0,0,0,40"></windows:WindowHome>
                 </TabItem>
                 <TabItem
-                    Header="身体信息"
+                    Header="病人信息"
                     Tag="&#xe72b;"
                     Style="{StaticResource LeftTabItem}">
-                    <windows:WindowBody Margin="0,0,0,40"></windows:WindowBody>
+                    <windows:WindowPatient Margin="0,0,0,40"></windows:WindowPatient>
                 </TabItem>
                 <TabItem
-                    Header="个人病史"
+                    Header="病人病史"
                     Tag="&#xe62e;"
                     Style="{StaticResource LeftTabItem}">
                     <windows:WindowMedicalRecord Margin="0,0,0,40"></windows:WindowMedicalRecord>
                 </TabItem>
                 <TabItem
-                    Header="健康计划"
+                    Header="个人计划"
                     Tag="&#xe64d;"
                     Style="{StaticResource LeftTabItem}">
                     <windows:WindowPlans Margin="0,0,0,40"></windows:WindowPlans>

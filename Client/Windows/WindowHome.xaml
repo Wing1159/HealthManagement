@@ -29,6 +29,7 @@
                     Command="{Binding UserSetCommand}"/>
             </WrapPanel>
         </StackPanel>
-        <local:WindowHSuggest HorizontalAlignment="Center" VerticalAlignment="Bottom"></local:WindowHSuggest>
+        <local:WindowHSuggest HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+        <local:SetUserWindow x:Name="_set" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

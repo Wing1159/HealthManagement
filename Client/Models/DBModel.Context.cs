@@ -26,10 +26,11 @@ namespace Client.Models
         }
     
         public virtual DbSet<AnamnesisClass> AnamnesisClass { get; set; }
+        public virtual DbSet<PAnamnesis> PAnamnesis { get; set; }
+        public virtual DbSet<Patient> Patient { get; set; }
+        public virtual DbSet<PData> PData { get; set; }
         public virtual DbSet<PlanOver> PlanOver { get; set; }
         public virtual DbSet<Suggest> Suggest { get; set; }
-        public virtual DbSet<UAnamnesis> UAnamnesis { get; set; }
-        public virtual DbSet<UData> UData { get; set; }
         public virtual DbSet<UPlan> UPlan { get; set; }
         public virtual DbSet<User> User { get; set; }
     }

@@ -13,12 +13,10 @@ using MaterialDesignThemes.Wpf.Transitions;
 
 namespace Client.ViewModels
 {
-    class UserViewModel: ViewModelBase
+    class UserViewModel : ViewModelBase
     {
         #region 属性
-        /// <summary>
-        /// 添加Window属性
-        /// </summary>
+        //添加Window属性
         private DMSkin.WPF.DMSkinSimpleWindow window { get; set; }
         private string userID;
         public string UserID
@@ -61,7 +59,6 @@ namespace Client.ViewModels
             get { return windowPB; }
             set { windowPB = value; }
         }
-
         #endregion
 
         #region 公共方法
@@ -71,7 +68,12 @@ namespace Client.ViewModels
         public DelegateCommand RegiserCommand { get; private set; }
         private void Regiser()
         {
-            
+            using(HealthManagementEntities db = new HealthManagementEntities())
+            {
+                User u = db.User.Find(userID);
+                if (u != null) return;
+            }
+            Next();
         }
         /// <summary>
         /// 重置密码
@@ -107,7 +109,14 @@ namespace Client.ViewModels
         public DelegateCommand VCodeVerCommand { get; private set; }
         private void _VCodeVer()
         {
+            if (_VCode == "1111")
+            {
+                if (window.Title == "注册")
+                {
 
+                }
+                Next();
+            }
         }
         /// <summary>
         /// 查找用户名
@@ -117,7 +126,9 @@ namespace Client.ViewModels
         {
             using (HealthManagementEntities db = new HealthManagementEntities())
             {
-
+                User u = db.User.Find(userID);
+                if (u == null) return;
+                Next();
             }
         }
         /// <summary>
@@ -125,8 +136,9 @@ namespace Client.ViewModels
         /// </summary>
         private void Next()
         {
-            
+
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>

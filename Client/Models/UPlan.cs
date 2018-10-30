@@ -23,8 +23,11 @@ namespace Client.Models
         public int PlanID { get; set; }
         public string UserID { get; set; }
         public string PlanTitle { get; set; }
+        public string PlanCycle { get; set; }
+        public Nullable<System.DateTime> PlanSDate { get; set; }
+        public Nullable<System.DateTime> PlanODate { get; set; }
         public string PlanText { get; set; }
-        public Nullable<System.DateTime> PlanDate { get; set; }
+        public Nullable<System.DateTime> PlanCDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanOver> PlanOver { get; set; }

@@ -12,12 +12,16 @@ namespace Client.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Suggest
+    public partial class PAnamnesis
     {
-        public int SugID { get; set; }
-        public string SugText { get; set; }
-        public string SugLable { get; set; }
-        public Nullable<System.DateTime> SugCDate { get; set; }
-        public int SugRint { get; set; }
+        public int AnaID { get; set; }
+        public Nullable<int> AClID { get; set; }
+        public int PatientID { get; set; }
+        public string AnaText { get; set; }
+        public Nullable<System.DateTime> AnaDate { get; set; }
+        public Nullable<System.DateTime> AnaCDate { get; set; }
+    
+        public virtual AnamnesisClass AnamnesisClass { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

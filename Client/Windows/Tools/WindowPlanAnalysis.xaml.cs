@@ -1,4 +1,4 @@
-﻿using Client.ViewModels;
+﻿using DMSkin.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +11,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client.Windows
+namespace Client.Windows.Tools
 {
     /// <summary>
-    /// WindowHSuggest.xaml 的交互逻辑
+    /// WindowPlanAnalysis.xaml 的交互逻辑
     /// </summary>
-    public partial class WindowHSuggest : UserControl
+    public partial class WindowPlanAnalysis : DMSkinSimpleWindow
     {
-        public WindowHSuggest()
+        public WindowPlanAnalysis()
         {
             InitializeComponent();
-            DataContext = new SuggestViewModel();
         }
     }
 }

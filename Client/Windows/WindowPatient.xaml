@@ -1,19 +1,20 @@
-﻿<UserControl x:Class="Client.Windows.WindowMedicalRecord"
+﻿<UserControl x:Class="Client.Windows.WindowPatient"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:controls="clr-namespace:DMSkin.WPF.Controls;assembly=DMSkin.WPF"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Windows"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:controls="clr-namespace:DMSkin.WPF.Controls;assembly=DMSkin.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450"
+             d:DesignWidth="800">
     <Grid Margin="0,8,0,0">
         <WrapPanel VerticalAlignment="Top">
             <controls:DMButton
                 Width="30"
                 Height="30"
-                Command="{Binding OpenAddCommand}">
+                Command="{Binding OpenAddPCommand}">
                 <Label Style="{StaticResource FLable}"
                        Content="&#xe62a;"
                        FontSize="16"
@@ -41,7 +42,7 @@
         </WrapPanel>
         <DataGrid
             Margin="0 40 15 0"
-            ItemsSource="{Binding Anamnesis, Mode=OneWay}"
+            ItemsSource="{Binding PatData, Mode=OneWay}"
             CanUserSortColumns="True"
             CanUserAddRows="False"
             AutoGenerateColumns="False"
@@ -63,40 +64,36 @@
                         </Border>
                     </DataGridCheckBoxColumn.Header>
                 </DataGridCheckBoxColumn>
-                <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
-                <materialDesign:MaterialDataGridComboBoxColumn
-                    Header="病史类型"
-                    DisplayMemberPath="AClName"
-                    SelectedValuePath="AClID"
-                    MaxWidth="100"
-                    Width="100"
-                    MinWidth="100"
-                    SelectedValueBinding="{Binding AClID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.AnaClass}" />
-                <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
-                <materialDesign:MaterialDataGridComboBoxColumn
+                <materialDesign:MaterialDataGridTextColumn
+                    Binding="{Binding PatientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="病人姓名"
-                    DisplayMemberPath="PatientName"
-                    SelectedValuePath="PatientID"
-                    MaxWidth="100"
-                    Width="100"
-                    MinWidth="100"
-                    SelectedValueBinding="{Binding AClID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Patient}" />
-
-                <materialDesign:MaterialDataGridTextColumn
-                    Binding="{Binding AnaText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Header="内容"
                     Width="Auto"
-                    MaxWidth="600"
-                    MinWidth="180"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                <!-- set a max length to get an indicator in the editor -->
                 <materialDesign:MaterialDataGridTextColumn
-                    Binding="{Binding AnaDate, StringFormat={}{0:yyyy/MM/dd}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Header="病史时间"
-                    MaxLength="100" 
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                    Binding="{Binding PatientSex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="性别"
+                    Width="Auto"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                <materialDesign:MaterialDataGridTextColumn
+                    Binding="{Binding PatientBirthday, StringFormat={}{0:yyyy/MM/dd}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="出生日期"
+                    Width="Auto"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                <materialDesign:MaterialDataGridTextColumn
+                    Binding="{Binding PatientHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="身高"
+                    Width="Auto"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                <materialDesign:MaterialDataGridTextColumn
+                    Binding="{Binding PatientWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="体重"
+                    Width="Auto"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                <materialDesign:MaterialDataGridTextColumn
+                    Binding="{Binding PatientPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="手机号"
+                    Width="Auto"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                 <DataGridTemplateColumn Header="操作">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -107,7 +104,12 @@
                                     <Button Width="30"
                                             Content="&#xe613;"
                                             Style="{StaticResource MenuButton}"
-                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DelCommand}"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DelPCommand}"
+                                            CommandParameter="{Binding AnaID}"/>
+                                    <Button Width="30"
+                                            Content="&#xe551;"
+                                            Style="{StaticResource MenuButton}"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.OpenAddPDCommand}"
                                             CommandParameter="{Binding AnaID}"/>
                                 </StackPanel>
                             </Grid>
@@ -116,6 +118,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <local:AddMRWindow x:Name="_add"  Visibility="Collapsed"/>
+        <local:AddPatientWindow x:Name="_addp"  Visibility="Collapsed"/>
+        <local:AddPDWindow x:Name="_addpd"  Visibility="Collapsed"/>
     </Grid>
 </UserControl>

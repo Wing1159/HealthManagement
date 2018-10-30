@@ -17,21 +17,23 @@ namespace Client.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.UAnamnesis = new HashSet<UAnamnesis>();
-            this.UData = new HashSet<UData>();
+            this.Patient = new HashSet<Patient>();
             this.UPlan = new HashSet<UPlan>();
         }
     
         public string UserID { get; set; }
         public string UserPassWord { get; set; }
-        public string UserName { get; set; }
         public byte[] UesrImage { get; set; }
         public string UserEmail { get; set; }
+        public string UserName { get; set; }
+        public string UserSex { get; set; }
+        public Nullable<System.DateTime> UserBirthday { get; set; }
+        public string UserPhone { get; set; }
+        public string UserProfession { get; set; }
+        public string Hospital { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UAnamnesis> UAnamnesis { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UData> UData { get; set; }
+        public virtual ICollection<Patient> Patient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UPlan> UPlan { get; set; }
     }

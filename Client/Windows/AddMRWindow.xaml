@@ -26,44 +26,48 @@
             <WrapPanel Margin="0,0,0,20">
                 <ComboBox
                     materialDesign:HintAssist.Hint="病史类型"
-                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                     FontSize="18"
                     MinWidth="160"
-                    HorizontalContentAlignment="Left">
-                    <ComboBoxItem>
-                        Android
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        iOS
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Linux
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Windows
-                    </ComboBoxItem>
-                </ComboBox>
+                    DisplayMemberPath="AClName"
+                    SelectedValuePath="AClID"
+                    ItemsSource="{Binding AnaClass}"
+                    SelectedValue="{Binding AnaClassID}"
+                    HorizontalContentAlignment="Left"/>
                 <WrapPanel VerticalAlignment="Bottom"
                            Margin="160,0,0,0">
                     <DatePicker Name="Date"
-                                materialDesign:HintAssist.Hint="出生日期"
+                                materialDesign:HintAssist.Hint="日期"
                                 FontSize="18"
+                                Text="{Binding AnaDate, Mode=TwoWay}"
                                 MinWidth="200"/>
                 </WrapPanel>
             </WrapPanel>
             <TextBox Style="{StaticResource MaterialDesignTextAreaTextBox}"
                      VerticalAlignment="Top"
-                     Height="230"
+                     Height="190"
                      FontSize="18"
                      AcceptsReturn="True"
                      TextWrapping="Wrap"
+                     Text="{Binding AnaText}"
                      VerticalScrollBarVisibility="Auto"
                      materialDesign:HintAssist.Hint="病历内容"
-                      Margin="0,0,0,20"/>
+                     Margin="0,0,0,10"/>
+            <WrapPanel Margin="0,0,0,20">
+                <ComboBox
+                materialDesign:HintAssist.Hint="病人姓名"
+                FontSize="18"
+                MinWidth="160"
+                MaxWidth="160"
+                DisplayMemberPath="PatientName"
+                SelectedValuePath="PatientID"
+                ItemsSource="{Binding Patient}"
+                SelectedValue="{Binding PatID}"
+                HorizontalContentAlignment="Left"/>
+            </WrapPanel>
             <WrapPanel>
                 <Button Width="100"
-                        Command="{Binding }"
-                        Content="保存"/>
+                        Command="{Binding AddCommand}"
+                        Content="确定"/>
 
                 <Button Width="80"
                         Content="取消"

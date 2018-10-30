@@ -5,8 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Windows"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="460">
+             d:DesignHeight="140" d:DesignWidth="460">
     <Grid>
-        <Label Content="小知识" HorizontalAlignment="Left" VerticalAlignment="Top" Width="460" Height="110" Foreground="{StaticResource AppColor}"/>
+        <TextBlock
+            Text="{Binding Suggest}" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Width="460" Height="110" 
+            Foreground="{StaticResource AppColor}"/>
+        <Button
+            Content="&#xe62d;"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Command="{Binding RGetCommand}"
+            Style="{DynamicResource MenuButton}"/>
     </Grid>
 </UserControl>

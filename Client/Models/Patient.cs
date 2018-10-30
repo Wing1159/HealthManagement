@@ -12,20 +12,28 @@ namespace Client.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AnamnesisClass
+    public partial class Patient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AnamnesisClass()
+        public Patient()
         {
             this.PAnamnesis = new HashSet<PAnamnesis>();
+            this.PData = new HashSet<PData>();
         }
     
-        public int AClID { get; set; }
-        public string AClName { get; set; }
-        public string AClText { get; set; }
-        public Nullable<int> AClOrder { get; set; }
+        public int PatientID { get; set; }
+        public string UserID { get; set; }
+        public string PatientName { get; set; }
+        public string PatientPhone { get; set; }
+        public string PatientSex { get; set; }
+        public Nullable<System.DateTime> PatientBirthday { get; set; }
+        public Nullable<double> PatientHeight { get; set; }
+        public Nullable<double> PatientWeight { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PAnamnesis> PAnamnesis { get; set; }
+        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PData> PData { get; set; }
     }
 }

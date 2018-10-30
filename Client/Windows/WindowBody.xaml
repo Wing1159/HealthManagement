@@ -29,6 +29,7 @@
                             Name="btnSave"
                             Visibility="Collapsed"
                             ToolTip="保存"
+                            Command="{Binding SaveCommand}"
                             Click="btnSave_Click"/>
                         <Button
                             Content="&#xe605;"
@@ -36,6 +37,7 @@
                             Name="btnCancel"
                             ToolTip="取消"
                             Visibility="Collapsed"
+                            Command="{Binding CancelCommand}"
                             Click="btnCancel_Click"/>
                         <Button
                             Content="&#xe603;"
@@ -44,71 +46,132 @@
                             ToolTip="修改"
                             Click="btnEdit_Click"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBox
-                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
-                            VerticalAlignment="Top"
-                            AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            MaxWidth="180"
-                            MinWidth="180"
-                            FontSize="18"
-                            materialDesign:HintAssist.Hint="姓名"/>
-                    </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <ComboBox
-                            materialDesign:HintAssist.Hint="性别"
-                            MaxWidth="180"
-                            MinWidth="180"
-                            Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                            <ComboBoxItem>
-                                男
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                女
-                            </ComboBoxItem>
-                        </ComboBox>
-                    </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <DatePicker
-                            Name="Date"
-                            Width="180"
-                            materialDesign:HintAssist.Hint="出生日期"/>
-                    </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBox
-                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
-                            VerticalAlignment="Top"
-                            AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            MaxWidth="180"
-                            MinWidth="180"
-                            FontSize="18"
-                            materialDesign:HintAssist.Hint="职业"/>
-                    </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBox
-                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
-                            VerticalAlignment="Top"
-                            AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            MaxWidth="180"
-                            MinWidth="180"
-                            FontSize="18"
-                            materialDesign:HintAssist.Hint="身高"/>
-                    </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBox
-                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
-                            VerticalAlignment="Top"
-                            AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            MaxWidth="180"
-                            MinWidth="180"
-                            FontSize="18"
-                            
-                            materialDesign:HintAssist.Hint="体重"/>
-                    </WrapPanel>
+                    <Grid VerticalAlignment="Center"
+                          HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="86"></RowDefinition>
+                            <RowDefinition Height="86"></RowDefinition>
+                            <RowDefinition Height="86"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <WrapPanel HorizontalAlignment="Center"
+                                   Grid.Column="0" Grid.Row="0"
+                                   Margin="0,0,40,20">
+                            <TextBox
+                                Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                                VerticalAlignment="Top"
+                                AcceptsReturn="True"
+                                TextWrapping="Wrap"
+                                MaxWidth="180"
+                                MinWidth="180"
+                                Height="66"
+                                FontSize="18"
+                                Text="{Binding Name}"
+                                IsEnabled="False"
+                                Name="tbName"
+                                materialDesign:HintAssist.Hint="姓名"/>
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center"
+                                   VerticalAlignment="Bottom"
+                                   Grid.Column="1" Grid.Row="0"
+                                   Margin="0,0,0,20">
+                            <ComboBox
+                                materialDesign:HintAssist.Hint="性别"
+                                MaxWidth="100"
+                                MinWidth="50"
+                                Margin="0,0,10,0"
+                                Text="{Binding Sex,Mode=TwoWay}"
+                                Name="cbSex"
+                                IsEnabled="False"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBoxItem Tag="男">
+                                    男
+                                </ComboBoxItem>
+                                <ComboBoxItem Tag="女">
+                                    女
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <WrapPanel VerticalAlignment="Bottom">
+                                <DatePicker
+                                    Name="dpBirthday"
+                                    Width="130"
+                                    Text="{Binding Birthday,Mode=TwoWay}"
+                                    IsEnabled="False"
+                                    materialDesign:HintAssist.Hint="出生日期"/>
+                            </WrapPanel>
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" 
+                                   Grid.Column="0"
+                                   Grid.Row="1"
+                                   Margin="0,0,40,20">
+                            <TextBox
+                                Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                                VerticalAlignment="Top"
+                                AcceptsReturn="True"
+                                TextWrapping="Wrap"
+                                MaxWidth="180"
+                                MinWidth="180"
+                                FontSize="18"
+                                Name="tbProfession"
+                                IsEnabled="False"
+                                Text="{Binding Profession}"
+                                materialDesign:HintAssist.Hint="职业"/>
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" 
+                                   Grid.Column="1"
+                                   Grid.Row="1"
+                                   Margin="0,0,0,20">
+                            <TextBox
+                                Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                                VerticalAlignment="Top"
+                                AcceptsReturn="True"
+                                TextWrapping="Wrap"
+                                MaxWidth="180"
+                                MinWidth="180"
+                                FontSize="18"
+                                Name="tbPhone"
+                                IsEnabled="False"
+                                Text="{Binding Phone}"
+                                materialDesign:HintAssist.Hint="手机号"/>
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center"
+                                   Grid.Column="0"
+                                   Grid.Row="2"
+                                   Margin="0,0,40,20">
+                            <TextBox
+                                Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                                VerticalAlignment="Top"
+                                AcceptsReturn="True"
+                                TextWrapping="Wrap"
+                                MaxWidth="180"
+                                MinWidth="180"
+                                FontSize="18"
+                                Name="tbHeight"
+                                IsEnabled="False"
+                                Text="{Binding Height}"
+                                materialDesign:HintAssist.Hint="身高(cm)"/>
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Margin="0,0,0,20">
+                            <TextBox
+                                Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                                VerticalAlignment="Top"
+                                AcceptsReturn="True"
+                                TextWrapping="Wrap"
+                                MaxWidth="180"
+                                MinWidth="180"
+                                FontSize="18"
+                                IsEnabled="False"
+                                Name="tbWeight"
+                                Text="{Binding Weight}"
+                                materialDesign:HintAssist.Hint="体重(kg)"/>
+                        </WrapPanel>
+                    </Grid>
                 </StackPanel>
             </controls:DMTabItem>
             <controls:DMTabItem
@@ -118,19 +181,70 @@
                 SelectedColor="#FF1E9FFF"
                 TabItemType="Right">
                 <StackPanel>
-                    <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <WrapPanel VerticalAlignment="Top"
+                               HorizontalAlignment="Right"
+                               Margin="0,0,10,10">
                         <Button
-                            Content="&#xe649;"
-                            Style="{StaticResource MenuButton}"/>
+                            Content="&#xe62a;"
+                            Style="{StaticResource MenuButton}"
+                            Name="btnAdd"
+                            Command="{Binding OpenAddCommand}"
+                            ToolTip="添加"/>
                         <Button
-                            Content="&#xe605;"
-                            Style="{StaticResource MenuButton}"/>
-                        <Button
-                            Content="&#xe603;"
-                            Style="{StaticResource MenuButton}"/>
+                            Content="&#xe6f8;"
+                            Style="{StaticResource MenuButton}"
+                            Name="btnSyn"
+                            Command="{Binding SynchronousCommand}"
+                            ToolTip="同步"/>
                     </WrapPanel>
+                    <DataGrid
+                        Margin="15 0 15 0"
+                        ItemsSource="{Binding BodyData, Mode=OneWay}"
+                        CanUserSortColumns="True"
+                        CanUserAddRows="False"
+                        AutoGenerateColumns="False"
+                        Name="dgAnamnesis"
+                        materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                        <DataGrid.Columns>
+                            <materialDesign:MaterialDataGridTextColumn
+                                Binding="{Binding DataName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Header="数据名称"
+                                Width="200"
+                                MaxWidth="200"
+                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                            <materialDesign:MaterialDataGridTextColumn
+                                Binding="{Binding DataValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Header="值"
+                                Width="Auto"
+                                MaxWidth="600"
+                                MinWidth="180"
+                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                            <DataGridTemplateColumn 
+                                Header="操作"
+                                MaxWidth="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" 
+                                                        HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center">
+                                                <Button
+                                                    Width="30"
+                                                    Content="&#xe613;"
+                                                    Style="{StaticResource MenuButton}"
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DelCommand}"
+                                                    CommandParameter="{Binding AnaID}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </controls:DMTabItem>
         </TabControl>
+        <local:AddUBWindow x:Name="_add"  Visibility="Collapsed"/>
     </Grid>
 </UserControl>

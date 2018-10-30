@@ -9,76 +9,140 @@
           <Key>
             <PropertyRef Name="AClID" />
           </Key>
-          <Property Name="AClID" Type="int" Nullable="false" />
+          <Property Name="AClID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AClName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AClText" Type="text" />
           <Property Name="AClOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="PAnamnesis">
+          <Key>
+            <PropertyRef Name="AnaID" />
+          </Key>
+          <Property Name="AnaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AClID" Type="int" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="AnaText" Type="text" Nullable="false" />
+          <Property Name="AnaDate" Type="datetime" />
+          <Property Name="AnaCDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PatientPhone" Type="char" MaxLength="11" />
+          <Property Name="PatientSex" Type="varchar" MaxLength="2" />
+          <Property Name="PatientBirthday" Type="date" />
+          <Property Name="PatientHeight" Type="float" />
+          <Property Name="PatientWeight" Type="float" />
+        </EntityType>
+        <EntityType Name="PData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="DataName" Type="varchar" MaxLength="20" />
+          <Property Name="DataValue" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="PlanOver">
           <Key>
-            <PropertyRef Name="POvID" />
+            <PropertyRef Name="POID" />
           </Key>
-          <Property Name="POvID" Type="int" Nullable="false" />
-          <Property Name="PlanID" Type="int" />
-          <Property Name="POvDate" Type="datetime" Nullable="false" />
+          <Property Name="POID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanID" Type="int" Nullable="false" />
+          <Property Name="PODate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Suggest">
           <Key>
             <PropertyRef Name="SugID" />
           </Key>
-          <Property Name="SugID" Type="int" Nullable="false" />
+          <Property Name="SugID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SugText" Type="text" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UAnamnesis">
-          <Key>
-            <PropertyRef Name="AnaID" />
-          </Key>
-          <Property Name="AnaID" Type="int" Nullable="false" />
-          <Property Name="AClID" Type="int" />
-          <Property Name="UserID" Type="varchar" MaxLength="18" />
-          <Property Name="AnaText" Type="text" Nullable="false" />
-          <Property Name="AnaDate" Type="datetime" />
-          <Property Name="AnaCDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="UData">
-          <Key>
-            <PropertyRef Name="DataID" />
-          </Key>
-          <Property Name="DataID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="varchar" MaxLength="18" />
-          <Property Name="DataUName" Type="varchar" MaxLength="20" />
-          <Property Name="DataSex" Type="int" />
-          <Property Name="DataBirthday" Type="datetime" />
-          <Property Name="DataPhone" Type="char" MaxLength="11" />
-          <Property Name="DataProfession" Type="varchar" MaxLength="20" />
-          <Property Name="DataHeight" Type="float" />
-          <Property Name="DataWeight" Type="float" />
-          <Property Name="BloodPressure" Type="float" />
-          <Property Name="BloodSugar" Type="float" />
-          <Property Name="BloodFat" Type="float" />
-          <Property Name="HeartRate" Type="float" />
+          <Property Name="SugLable" Type="nvarchar" MaxLength="255" />
+          <Property Name="SugCDate" Type="date" />
+          <Property Name="SugRint" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UPlan">
           <Key>
             <PropertyRef Name="PlanID" />
           </Key>
-          <Property Name="PlanID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="varchar" MaxLength="18" />
+          <Property Name="PlanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="18" Nullable="false" />
           <Property Name="PlanTitle" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="PlanText" Type="text" Nullable="false" />
-          <Property Name="PlanDate" Type="datetime" />
+          <Property Name="PlanCycle" Type="varchar" MaxLength="15" />
+          <Property Name="PlanSDate" Type="datetime" />
+          <Property Name="PlanODate" Type="datetime" />
+          <Property Name="PlanText" Type="text" />
+          <Property Name="PlanCDate" Type="datetime" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="varchar" MaxLength="18" Nullable="false" />
-          <Property Name="UserPassWord" Type="varchar" MaxLength="40" />
-          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="UserPassWord" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="UesrImage" Type="image" />
           <Property Name="UserEmail" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="UserSex" Type="varchar" MaxLength="2" />
+          <Property Name="UserBirthday" Type="date" />
+          <Property Name="UserPhone" Type="char" MaxLength="11" />
+          <Property Name="UserProfession" Type="nvarchar" MaxLength="20" />
+          <Property Name="Hospital" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_PAnamnesis_AnamnesisClass">
+          <End Role="AnamnesisClass" Type="Self.AnamnesisClass" Multiplicity="0..1" />
+          <End Role="PAnamnesis" Type="Self.PAnamnesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnamnesisClass">
+              <PropertyRef Name="AClID" />
+            </Principal>
+            <Dependent Role="PAnamnesis">
+              <PropertyRef Name="AClID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAnamnesis_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PAnamnesis" Type="Self.PAnamnesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PAnamnesis">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PData_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PData" Type="Self.PData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PData">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PLANOVER_UPLAN_PLA_UPLAN">
-          <End Role="UPlan" Type="Self.UPlan" Multiplicity="0..1" />
+          <End Role="UPlan" Type="Self.UPlan" Multiplicity="1" />
           <End Role="PlanOver" Type="Self.PlanOver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UPlan">
@@ -89,44 +153,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UANAMNES_ANAMNESIS_ANAMNESI">
-          <End Role="AnamnesisClass" Type="Self.AnamnesisClass" Multiplicity="0..1" />
-          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AnamnesisClass">
-              <PropertyRef Name="AClID" />
-            </Principal>
-            <Dependent Role="UAnamnesis">
-              <PropertyRef Name="AClID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UANAMNES_USER_UANA_USER">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="UAnamnesis">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UDATA_USER_UDAT_USER">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="UData" Type="Self.UData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="UData">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UPLAN_USER_UPLA_USER">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="UPlan" Type="Self.UPlan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -139,27 +167,32 @@
         </Association>
         <EntityContainer Name="HealthManagementModelStoreContainer">
           <EntitySet Name="AnamnesisClass" EntityType="Self.AnamnesisClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAnamnesis" EntityType="Self.PAnamnesis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PData" EntityType="Self.PData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanOver" EntityType="Self.PlanOver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggest" EntityType="Self.Suggest" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UAnamnesis" EntityType="Self.UAnamnesis" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UData" EntityType="Self.UData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UPlan" EntityType="Self.UPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PAnamnesis_AnamnesisClass" Association="Self.FK_PAnamnesis_AnamnesisClass">
+            <End Role="AnamnesisClass" EntitySet="AnamnesisClass" />
+            <End Role="PAnamnesis" EntitySet="PAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAnamnesis_Patient" Association="Self.FK_PAnamnesis_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PAnamnesis" EntitySet="PAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_User" Association="Self.FK_Patient_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PData_Patient" Association="Self.FK_PData_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PData" EntitySet="PData" />
+          </AssociationSet>
           <AssociationSet Name="FK_PLANOVER_UPLAN_PLA_UPLAN" Association="Self.FK_PLANOVER_UPLAN_PLA_UPLAN">
             <End Role="UPlan" EntitySet="UPlan" />
             <End Role="PlanOver" EntitySet="PlanOver" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UANAMNES_ANAMNESIS_ANAMNESI" Association="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI">
-            <End Role="AnamnesisClass" EntitySet="AnamnesisClass" />
-            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UANAMNES_USER_UANA_USER" Association="Self.FK_UANAMNES_USER_UANA_USER">
-            <End Role="User" EntitySet="User" />
-            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UDATA_USER_UDAT_USER" Association="Self.FK_UDATA_USER_UDAT_USER">
-            <End Role="User" EntitySet="User" />
-            <End Role="UData" EntitySet="UData" />
           </AssociationSet>
           <AssociationSet Name="FK_UPLAN_USER_UPLA_USER" Association="Self.FK_UPLAN_USER_UPLA_USER">
             <End Role="User" EntitySet="User" />
@@ -175,68 +208,82 @@
           <Key>
             <PropertyRef Name="AClID" />
           </Key>
-          <Property Name="AClID" Type="Int32" Nullable="false" />
+          <Property Name="AClID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AClName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AClText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="AClOrder" Type="Int32" />
-          <NavigationProperty Name="UAnamnesis" Relationship="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI" FromRole="AnamnesisClass" ToRole="UAnamnesis" />
+          <NavigationProperty Name="PAnamnesis" Relationship="Self.FK_PAnamnesis_AnamnesisClass" FromRole="AnamnesisClass" ToRole="PAnamnesis" />
+        </EntityType>
+        <EntityType Name="PAnamnesis">
+          <Key>
+            <PropertyRef Name="AnaID" />
+          </Key>
+          <Property Name="AnaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AClID" Type="Int32" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="AnaText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnaDate" Type="DateTime" Precision="3" />
+          <Property Name="AnaCDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AnamnesisClass" Relationship="Self.FK_PAnamnesis_AnamnesisClass" FromRole="PAnamnesis" ToRole="AnamnesisClass" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_PAnamnesis_Patient" FromRole="PAnamnesis" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PatientName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PatientPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="PatientSex" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PatientBirthday" Type="DateTime" Precision="0" />
+          <Property Name="PatientHeight" Type="Double" />
+          <Property Name="PatientWeight" Type="Double" />
+          <NavigationProperty Name="PAnamnesis" Relationship="Self.FK_PAnamnesis_Patient" FromRole="Patient" ToRole="PAnamnesis" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Patient_User" FromRole="Patient" ToRole="User" />
+          <NavigationProperty Name="PData" Relationship="Self.FK_PData_Patient" FromRole="Patient" ToRole="PData" />
+        </EntityType>
+        <EntityType Name="PData">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="DataName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DataValue" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_PData_Patient" FromRole="PData" ToRole="Patient" />
         </EntityType>
         <EntityType Name="PlanOver">
           <Key>
-            <PropertyRef Name="POvID" />
+            <PropertyRef Name="POID" />
           </Key>
-          <Property Name="POvID" Type="Int32" Nullable="false" />
-          <Property Name="PlanID" Type="Int32" />
-          <Property Name="POvDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="POID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlanID" Type="Int32" Nullable="false" />
+          <Property Name="PODate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="UPlan" Relationship="Self.FK_PLANOVER_UPLAN_PLA_UPLAN" FromRole="PlanOver" ToRole="UPlan" />
         </EntityType>
         <EntityType Name="Suggest">
           <Key>
             <PropertyRef Name="SugID" />
           </Key>
-          <Property Name="SugID" Type="Int32" Nullable="false" />
+          <Property Name="SugID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SugText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UAnamnesis">
-          <Key>
-            <PropertyRef Name="AnaID" />
-          </Key>
-          <Property Name="AnaID" Type="Int32" Nullable="false" />
-          <Property Name="AClID" Type="Int32" />
-          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Name="AnaText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AnaDate" Type="DateTime" Precision="3" />
-          <Property Name="AnaCDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AnamnesisClass" Relationship="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI" FromRole="UAnamnesis" ToRole="AnamnesisClass" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UANAMNES_USER_UANA_USER" FromRole="UAnamnesis" ToRole="User" />
-        </EntityType>
-        <EntityType Name="UData">
-          <Key>
-            <PropertyRef Name="DataID" />
-          </Key>
-          <Property Name="DataID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Name="DataUName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DataSex" Type="Int32" />
-          <Property Name="DataBirthday" Type="DateTime" Precision="3" />
-          <Property Name="DataPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
-          <Property Name="DataProfession" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DataHeight" Type="Double" />
-          <Property Name="DataWeight" Type="Double" />
-          <Property Name="BloodPressure" Type="Double" />
-          <Property Name="BloodSugar" Type="Double" />
-          <Property Name="BloodFat" Type="Double" />
-          <Property Name="HeartRate" Type="Double" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UDATA_USER_UDAT_USER" FromRole="UData" ToRole="User" />
+          <Property Name="SugLable" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SugCDate" Type="DateTime" Precision="0" />
+          <Property Name="SugRint" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UPlan">
           <Key>
             <PropertyRef Name="PlanID" />
           </Key>
-          <Property Name="PlanID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="PlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PlanTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PlanText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PlanDate" Type="DateTime" Precision="3" />
+          <Property Name="PlanCycle" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PlanSDate" Type="DateTime" Precision="3" />
+          <Property Name="PlanODate" Type="DateTime" Precision="3" />
+          <Property Name="PlanText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PlanCDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="PlanOver" Relationship="Self.FK_PLANOVER_UPLAN_PLA_UPLAN" FromRole="UPlan" ToRole="PlanOver" />
           <NavigationProperty Name="User" Relationship="Self.FK_UPLAN_USER_UPLA_USER" FromRole="UPlan" ToRole="User" />
         </EntityType>
@@ -245,28 +292,68 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPassWord" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassWord" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UesrImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UAnamnesis" Relationship="Self.FK_UANAMNES_USER_UANA_USER" FromRole="User" ToRole="UAnamnesis" />
-          <NavigationProperty Name="UData" Relationship="Self.FK_UDATA_USER_UDAT_USER" FromRole="User" ToRole="UData" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserSex" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="UserBirthday" Type="DateTime" Precision="0" />
+          <Property Name="UserPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="UserProfession" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Hospital" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_User" FromRole="User" ToRole="Patient" />
           <NavigationProperty Name="UPlan" Relationship="Self.FK_UPLAN_USER_UPLA_USER" FromRole="User" ToRole="UPlan" />
         </EntityType>
-        <Association Name="FK_UANAMNES_ANAMNESIS_ANAMNESI">
+        <Association Name="FK_PAnamnesis_AnamnesisClass">
           <End Role="AnamnesisClass" Type="Self.AnamnesisClass" Multiplicity="0..1" />
-          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
+          <End Role="PAnamnesis" Type="Self.PAnamnesis" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnamnesisClass">
               <PropertyRef Name="AClID" />
             </Principal>
-            <Dependent Role="UAnamnesis">
+            <Dependent Role="PAnamnesis">
               <PropertyRef Name="AClID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PAnamnesis_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PAnamnesis" Type="Self.PAnamnesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PAnamnesis">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PData_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PData" Type="Self.PData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PData">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PLANOVER_UPLAN_PLA_UPLAN">
-          <End Role="UPlan" Type="Self.UPlan" Multiplicity="0..1" />
+          <End Role="UPlan" Type="Self.UPlan" Multiplicity="1" />
           <End Role="PlanOver" Type="Self.PlanOver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UPlan">
@@ -277,32 +364,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UANAMNES_USER_UANA_USER">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="UAnamnesis" Type="Self.UAnamnesis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="UAnamnesis">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UDATA_USER_UDAT_USER">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="UData" Type="Self.UData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="UData">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UPLAN_USER_UPLA_USER">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="UPlan" Type="Self.UPlan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -315,27 +378,32 @@
         </Association>
         <EntityContainer Name="HealthManagementEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AnamnesisClass" EntityType="Self.AnamnesisClass" />
+          <EntitySet Name="PAnamnesis" EntityType="Self.PAnamnesis" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" />
+          <EntitySet Name="PData" EntityType="Self.PData" />
           <EntitySet Name="PlanOver" EntityType="Self.PlanOver" />
           <EntitySet Name="Suggest" EntityType="Self.Suggest" />
-          <EntitySet Name="UAnamnesis" EntityType="Self.UAnamnesis" />
-          <EntitySet Name="UData" EntityType="Self.UData" />
           <EntitySet Name="UPlan" EntityType="Self.UPlan" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_UANAMNES_ANAMNESIS_ANAMNESI" Association="Self.FK_UANAMNES_ANAMNESIS_ANAMNESI">
+          <AssociationSet Name="FK_PAnamnesis_AnamnesisClass" Association="Self.FK_PAnamnesis_AnamnesisClass">
             <End Role="AnamnesisClass" EntitySet="AnamnesisClass" />
-            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
+            <End Role="PAnamnesis" EntitySet="PAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAnamnesis_Patient" Association="Self.FK_PAnamnesis_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PAnamnesis" EntitySet="PAnamnesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_User" Association="Self.FK_Patient_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PData_Patient" Association="Self.FK_PData_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PData" EntitySet="PData" />
           </AssociationSet>
           <AssociationSet Name="FK_PLANOVER_UPLAN_PLA_UPLAN" Association="Self.FK_PLANOVER_UPLAN_PLA_UPLAN">
             <End Role="UPlan" EntitySet="UPlan" />
             <End Role="PlanOver" EntitySet="PlanOver" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UANAMNES_USER_UANA_USER" Association="Self.FK_UANAMNES_USER_UANA_USER">
-            <End Role="User" EntitySet="User" />
-            <End Role="UAnamnesis" EntitySet="UAnamnesis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UDATA_USER_UDAT_USER" Association="Self.FK_UDATA_USER_UDAT_USER">
-            <End Role="User" EntitySet="User" />
-            <End Role="UData" EntitySet="UData" />
           </AssociationSet>
           <AssociationSet Name="FK_UPLAN_USER_UPLA_USER" Association="Self.FK_UPLAN_USER_UPLA_USER">
             <End Role="User" EntitySet="User" />
@@ -353,16 +421,53 @@
               <MappingFragment StoreEntitySet="AnamnesisClass">
                 <ScalarProperty Name="AClID" ColumnName="AClID" />
                 <ScalarProperty Name="AClName" ColumnName="AClName" />
+                <ScalarProperty Name="AClText" ColumnName="AClText" />
                 <ScalarProperty Name="AClOrder" ColumnName="AClOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAnamnesis">
+            <EntityTypeMapping TypeName="HealthManagementModel.PAnamnesis">
+              <MappingFragment StoreEntitySet="PAnamnesis">
+                <ScalarProperty Name="AnaID" ColumnName="AnaID" />
+                <ScalarProperty Name="AClID" ColumnName="AClID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="AnaText" ColumnName="AnaText" />
+                <ScalarProperty Name="AnaDate" ColumnName="AnaDate" />
+                <ScalarProperty Name="AnaCDate" ColumnName="AnaCDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="HealthManagementModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientPhone" ColumnName="PatientPhone" />
+                <ScalarProperty Name="PatientSex" ColumnName="PatientSex" />
+                <ScalarProperty Name="PatientBirthday" ColumnName="PatientBirthday" />
+                <ScalarProperty Name="PatientHeight" ColumnName="PatientHeight" />
+                <ScalarProperty Name="PatientWeight" ColumnName="PatientWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PData">
+            <EntityTypeMapping TypeName="HealthManagementModel.PData">
+              <MappingFragment StoreEntitySet="PData">
+                <ScalarProperty Name="DataID" ColumnName="DataID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DataName" ColumnName="DataName" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PlanOver">
             <EntityTypeMapping TypeName="HealthManagementModel.PlanOver">
               <MappingFragment StoreEntitySet="PlanOver">
-                <ScalarProperty Name="POvID" ColumnName="POvID" />
+                <ScalarProperty Name="POID" ColumnName="POID" />
                 <ScalarProperty Name="PlanID" ColumnName="PlanID" />
-                <ScalarProperty Name="POvDate" ColumnName="POvDate" />
+                <ScalarProperty Name="PODate" ColumnName="PODate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -371,37 +476,9 @@
               <MappingFragment StoreEntitySet="Suggest">
                 <ScalarProperty Name="SugID" ColumnName="SugID" />
                 <ScalarProperty Name="SugText" ColumnName="SugText" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UAnamnesis">
-            <EntityTypeMapping TypeName="HealthManagementModel.UAnamnesis">
-              <MappingFragment StoreEntitySet="UAnamnesis">
-                <ScalarProperty Name="AnaID" ColumnName="AnaID" />
-                <ScalarProperty Name="AClID" ColumnName="AClID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="AnaText" ColumnName="AnaText" />
-                <ScalarProperty Name="AnaDate" ColumnName="AnaDate" />
-                <ScalarProperty Name="AnaCDate" ColumnName="AnaCDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UData">
-            <EntityTypeMapping TypeName="HealthManagementModel.UData">
-              <MappingFragment StoreEntitySet="UData">
-                <ScalarProperty Name="DataID" ColumnName="DataID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="DataUName" ColumnName="DataUName" />
-                <ScalarProperty Name="DataSex" ColumnName="DataSex" />
-                <ScalarProperty Name="DataBirthday" ColumnName="DataBirthday" />
-                <ScalarProperty Name="DataPhone" ColumnName="DataPhone" />
-                <ScalarProperty Name="DataProfession" ColumnName="DataProfession" />
-                <ScalarProperty Name="DataHeight" ColumnName="DataHeight" />
-                <ScalarProperty Name="DataWeight" ColumnName="DataWeight" />
-                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
-                <ScalarProperty Name="BloodSugar" ColumnName="BloodSugar" />
-                <ScalarProperty Name="BloodFat" ColumnName="BloodFat" />
-                <ScalarProperty Name="HeartRate" ColumnName="HeartRate" />
+                <ScalarProperty Name="SugLable" ColumnName="SugLable" />
+                <ScalarProperty Name="SugCDate" ColumnName="SugCDate" />
+                <ScalarProperty Name="SugRint" ColumnName="SugRint" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -411,8 +488,11 @@
                 <ScalarProperty Name="PlanID" ColumnName="PlanID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="PlanTitle" ColumnName="PlanTitle" />
+                <ScalarProperty Name="PlanCycle" ColumnName="PlanCycle" />
+                <ScalarProperty Name="PlanSDate" ColumnName="PlanSDate" />
+                <ScalarProperty Name="PlanODate" ColumnName="PlanODate" />
                 <ScalarProperty Name="PlanText" ColumnName="PlanText" />
-                <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />
+                <ScalarProperty Name="PlanCDate" ColumnName="PlanCDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -421,9 +501,14 @@
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UesrImage" ColumnName="UesrImage" />
                 <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserSex" ColumnName="UserSex" />
+                <ScalarProperty Name="UserBirthday" ColumnName="UserBirthday" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserProfession" ColumnName="UserProfession" />
+                <ScalarProperty Name="Hospital" ColumnName="Hospital" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

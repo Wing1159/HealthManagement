@@ -21,17 +21,20 @@
         </WrapPanel>
         <WrapPanel>
             <TextBlock
+                FontSize="17"
+                Text="{Binding Weather}"
+                HorizontalAlignment="Left"/>
+            <!--<TextBlock
                 FontSize="20"
                 Name="tbIconWeather"
                 Style="{StaticResource IconText}"
                 Text="{Binding WeatherIcon,Mode=OneWay}"
-                DataContextChanged="tbIconWeather_DataContextChanged"/>
+                DataContextChanged="tbIconWeather_DataContextChanged"/>-->
             <TextBlock
                 FontSize="20"
                 Text="{Binding Temperature}"
                 Margin="8,0,0,0"/>
         </WrapPanel>
-        <TextBlock FontSize="17" Text="{Binding Weather}" HorizontalAlignment="Center"/>
         <WrapPanel Margin="0,0,0,3">
             <TextBlock FontSize="16" Text="湿度：" IsEnabled="False"/>
             <TextBlock FontSize="16" Text="{Binding Humidity}" />

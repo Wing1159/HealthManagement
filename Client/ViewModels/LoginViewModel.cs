@@ -14,7 +14,6 @@ namespace Client.ViewModels
         // 添加Window属性
         private static LoginWindow window { get; set; }
         private string userName;
-
         public string UserName
         {
             get { return userName; }

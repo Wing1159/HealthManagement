@@ -12,16 +12,13 @@ namespace Client.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UAnamnesis
+    public partial class PData
     {
-        public int AnaID { get; set; }
-        public Nullable<int> AClID { get; set; }
-        public string UserID { get; set; }
-        public string AnaText { get; set; }
-        public Nullable<System.DateTime> AnaDate { get; set; }
-        public Nullable<System.DateTime> AnaCDate { get; set; }
+        public int DataID { get; set; }
+        public int PatientID { get; set; }
+        public string DataName { get; set; }
+        public string DataValue { get; set; }
     
-        public virtual AnamnesisClass AnamnesisClass { get; set; }
-        public virtual User User { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

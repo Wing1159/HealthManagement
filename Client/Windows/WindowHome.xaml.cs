@@ -1,4 +1,5 @@
-﻿using Client.ViewModels;
+﻿using Client.Models;
+using Client.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace Client.Windows
         public WindowHome()
         {
             InitializeComponent();
-            DataContext = new HomeViewModel();
+            tbUserName.Text = Auth.User;
+            DataContext = new HomeViewModel(this);
         }
     }
 }

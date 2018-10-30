@@ -14,9 +14,9 @@ namespace Client.Models
     
     public partial class PlanOver
     {
-        public int POvID { get; set; }
-        public Nullable<int> PlanID { get; set; }
-        public System.DateTime POvDate { get; set; }
+        public int POID { get; set; }
+        public int PlanID { get; set; }
+        public System.DateTime PODate { get; set; }
     
         public virtual UPlan UPlan { get; set; }
     }
